@@ -28,7 +28,7 @@ class AccountMove(models.Model):
 
 
 
-    @api.onchange('multiple_sale_order_ids')g
+    @api.onchange('multiple_sale_order_ids')
     def _onchange_multiple_sale_order_ids(self):
         #
         # self.invoice_line_ids = [(fields.Command.create(id))]
