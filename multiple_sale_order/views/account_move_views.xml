@@ -5,8 +5,13 @@
         <field name="model">account.move</field>
         <field name="inherit_id" ref="account.view_move_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='currency_id']" position="after">
-                <field name="multiple_sale_order_ids" editable="bottom"/>
+            <xpath expr="//notebook" position="inside">
+                <page string="sales orders">
+                    <list editable="bottom">
+                        <field name="multiple_sale_order_ids" />
+
+                    </list>
+                </page>
             </xpath>
         </field>
     </record>
