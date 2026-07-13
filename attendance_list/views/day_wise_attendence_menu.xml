@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="day_wise_attendance_root_menu" name="Attendance List"></menuitem>
+
+        <menuitem id="menu_day_wise_attendance" name="Absentees List"
+              parent="day_wise_attendance_root_menu"  action="action_attendance_list_management"/>
+
+
+
+
+</odoo>
