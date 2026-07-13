@@ -28,22 +28,21 @@ class AccountMove(models.Model):
 
 
 
+
     @api.onchange('multiple_sale_order_ids')
     def _onchange_multiple_sale_order_ids(self):
-        #
-        # self.invoice_line_ids = [(fields.Command.create(id))]
-        self.invoice_line_ids = [(5,0,0)]
 
-        new= []
+        self.invoice_line_ids = [(fields.Command.clear())]
+
+        new = []
         for i in self.multiple_sale_order_ids:
             for rec in i.order_line:
-                vals = {
-                    'name':rec.name,
+                new.append(fields.Command.create({
+                    'name': rec.name,
                     'product_id': rec.product_id.id,
                     'quantity': rec.product_uom_qty,
                     'price_unit': rec.price_unit,
-                }
-                new.append((0, 0, vals))
+                }))
 
         self.invoice_line_ids = new
 

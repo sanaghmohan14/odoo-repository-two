@@ -13,6 +13,12 @@
                     </list>
                 </page>
             </xpath>
+<!--            <xpath expr="//notebook" position="inside">-->
+<!--                <page string="one">-->
+<!--                    <button type="object" name="one"/>-->
+
+<!--                </page>-->
+<!--            </xpath>-->
         </field>
     </record>
 </odoo>
