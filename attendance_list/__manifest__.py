@@ -8,11 +8,10 @@
     'application': True,
     'installable': True,
     'auto_install': True,
-    'depends': [],
+    'depends': ['base','hr','mail','hr_attendance'],
     'data': [
         "security/ir.model.access.csv",
         "views/day_wise_attendance_views.xml",
         "views/day_wise_attendence_menu.xml",
-
              ]
 }
