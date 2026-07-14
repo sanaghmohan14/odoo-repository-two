@@ -17,7 +17,7 @@
                 <sheet>
                     <group>
                         <field name="employee_id"/>
-<!--                        <field name="date"/>-->
+                        <field name="date"/>
 <!--                        <field name="check_in"/>-->
 <!--                        <field name="check_out"/>-->
                     </group>

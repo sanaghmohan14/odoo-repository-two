@@ -14,6 +14,33 @@ class DayWiseAttendances(models.Model):
 
 
 
+    # @api.model
+    # def generate_absentees(self):
+    #     today = fields.Date.today()
+    #     tomorrow = today + timedelta(days=1)
+    #
+    #     print(today)
+    #     print(tomorrow)
+    #
+    #     employees = self.env["hr.employee"].search([('active', '=', True)])
+    #     print(employees)
+    #     for employee in employees:
+    #         present = self.env['hr.attendance'].search([
+    #             ('employee_id', '=', employee.id),('check_in', '>=', today),('check_in', '<', tomorrow)])
+    #         print(present)
+    #
+    #         if not present:
+    #             self.create({
+    #                 "employee_id": employee.id,
+    #             })
+    #
+    #         absent = self.env['day.wise.attendances'].search([('employee_id', '=', employee.id),('date','=',today)])
+    #
+    #         if absent:
+    #             absent.unlink()
+
+
+
     @api.model
     def generate_absentees(self):
         today = fields.Date.today()
@@ -29,13 +56,15 @@ class DayWiseAttendances(models.Model):
                 ('employee_id', '=', employee.id),('check_in', '>=', today),('check_in', '<', tomorrow)])
             print(present)
 
-            if not present:
-                self.create({
-                    "employee_id": employee.id,
-                })
-
+            absent = self.search([('employee_id', '=', employee.id),('date','=',today)], limit=1)
+            print(absent)
 
             if present:
-                self.env['day.wise.attendance'].unlink({
-                    "employee_id":employee.id
-                })
+                if absent:
+                    absent.unlink()
+                else:
+                    if not absent:
+                        self.create({
+                        "employee_id": employee.id,
+                        })
+
