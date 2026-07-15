@@ -8,7 +8,7 @@ class DayWiseAttendances(models.Model):
     _order = 'date desc'
 
     employee_id = fields.Many2one('hr.employee',string='Employee')
-    date = fields.Datetime(string='Date')
+    date = fields.Date(string='Date')
     check_in = fields.Datetime(string="Check In", default=fields.Datetime.now, required=True, tracking=True, index=True)
     check_out = fields.Datetime(string="Check Out", tracking=True)
     # status = fields.Selection({('present',':','present'), ('absent',':','absent')}, string="Status")
@@ -17,53 +17,61 @@ class DayWiseAttendances(models.Model):
 
 
 
+
+
     @api.model
     def generate_absentees(self):
         today = fields.Date.today()
-        tomorrow = today + timedelta(days=1)
-        yesterday = today - timedelta(days=1)
-
         print(today)
-        print(tomorrow)
-        print(yesterday)
 
-        employees = self.env["hr.employee"].search([('active', '=', True)])
+        self.search([('date', '=', today)]).unlink()
+        employees = self.env['hr.employee'].search([('active', '=', True)])
+
+        print(len(employees))
 
         for employee in employees:
-
-            today_attendance = self.env['hr.attendance'].search([
-                ('employee_id', '=', employee.id),
-                ('check_in', '>=', fields.Datetime.to_datetime(today),),
+            today_attendance = self.env['hr.attendance'].search([('employee_id', '=', employee.id),
+                ('check_in', '>=', fields.Datetime.to_datetime(today)),
+                ('check_in', '<', fields.Datetime.to_datetime(today + timedelta(days=1))),
             ], limit=1)
+
+            print(today_attendance)
+
 
             if today_attendance:
                 continue
 
-            open_attendance = self.env['hr.attendance'].search([
+            stayed = self.env['hr.attendance'].search([
                 ('employee_id', '=', employee.id),
                 ('check_out', '=', False),
                 ('check_in', '<', fields.Datetime.to_datetime(today)),
             ], limit=1)
 
-            if open_attendance:
+            if stayed:
                 continue
 
-            exists = self.search([
-                ('employee_id', '=', employee.id),
-                ('date', '=', today),
-            ], limit=1)
-
-            if not exists:
-                self.create({
-                    'employee_id': employee.id,
-                    'date': today,
-                })
+            self.create({
+                'employee_id': employee.id,
+                'date': today,
+            })
 
 
 
 
-
-
+        # @api.model_create_multi
+        # def create(self, vals_list):
+        #     records = super().create(vals_list)
+        #
+        #     today = fields.Date.today()
+        #
+        #     for rec in records:
+        #         absentee = self.env['day.wise.attendances'].search([ ('employee_id', '=', rec.employee_id.id),
+        #             ('date', '=', today),
+        #         ])
+        #
+        #         absentee.unlink()
+        #
+        #     return records
 
 
 

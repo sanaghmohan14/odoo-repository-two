@@ -62,7 +62,7 @@
         <field name="code">model.generate_absentees()</field>
 <!--        <field name="user_id" ref="base.user_root"/>-->
         <field name='interval_number'>1</field>
-        <field name='interval_type'>minutes</field>
+        <field name='interval_type'>days</field>
         <field name="active">True</field>
         <field name="state">code</field>
     </record>
