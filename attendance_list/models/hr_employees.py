@@ -79,82 +79,34 @@
 #         })
 
 
-#
-# from odoo import models, fields
-#
-# class DailyAbsentee(models.Model):
-#     _name = 'daily.absentee'
-#     _description = 'Daily Absentees'
-#     _order = 'date desc'
-#
-#     employee_id = fields.Many2one('hr.employee', required=True)
-#     date = fields.Date(required=True)
+    # @api.model_create_multi
+    # def create(self,vals_list):
+    #     records=super().create(vals_list)
+    #
+    #     today=fields.Date.today()
+    #
+    #     for employee in employees:
+    #         absentee=self.env['day.wise.attendance'].search([('employee_id','=',employee.id),('date','=',today)])
+    #
+    #         absentee.unlink()
+    #     return records
 
 
-# from odoo import models, fields, api
-#
-# class DailyAbsentee(models.Model):
-#     _inherit = 'daily.absentee'
-#
-#     @api.model
-#     def generate_absentees(self):
-#         today = fields.Date.today()
-#
-#         employees = self.env['hr.employee'].search([('active', '=', True)])
-#
-#         for employee in employees:
-#
-#             # Attendance checked in today
-#             today_attendance = self.env['hr.attendance'].search([
-#                 ('employee_id', '=', employee.id),
-#                 ('check_in', '>=', fields.Datetime.to_datetime(today)),
-#             ], limit=1)
-#
-#             if today_attendance:
-#                 continue
-#
-#             # Open attendance from previous day
-#             open_attendance = self.env['hr.attendance'].search([
-#                 ('employee_id', '=', employee.id),
-#                 ('check_out', '=', False),
-#                 ('check_in', '<', fields.Datetime.to_datetime(today)),
-#             ], limit=1)
-#
-#             if open_attendance:
-#                 continue
-#
-#             exists = self.search([
-#                 ('employee_id', '=', employee.id),
-#                 ('date', '=', today),
-#             ], limit=1)
-#
-#             if not exists:
-#                 self.create({
-#                     'employee_id': employee.id,
-#                     'date': today,
-#                 })
+    #
+    #
+    # def create_attendances(self):
+    #     today=fields.Date.today()
+    #     print(today)
+    #     self.search(['date','=',today]).unlink()
+    #
+    #     employee=self.env['hr.employee'].search([('employee_id','=',employee.id),('active','=',True)])
 
 
-# from odoo import models, api, fields
-#
-# class HrAttendance(models.Model):
-#     _inherit = 'hr.attendance'
-#
-#     @api.model_create_multi
-#     def create(self, vals_list):
-#         records = super().create(vals_list)
-#
-#         today = fields.Date.today()
-#
-#         for rec in records:
-#             absentee = self.env['daily.absentee'].search([
-#                 ('employee_id', '=', rec.employee_id.id),
-#                 ('date', '=', today),
-#             ])
-#
-#             absentee.unlink()
-#
-#         return records
+
+
+
+
+
 
 
 

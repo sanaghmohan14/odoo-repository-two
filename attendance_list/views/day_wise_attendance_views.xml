@@ -50,6 +50,7 @@
                 <field name="employee_id"/>
                 <filter name="check_in" string="filter by check IN" />
                 <filter name="group_by_employees" string="employees" context="{'group_by':'employee_id'}"/>
+                <filter name="group_by_date" string="group by date" context="{'group_by':'date'}"/>
 <!--                <filter name="today" string="filter by today" domain="['check_in','=',context_today()]"/>-->
             </search>
         </field>

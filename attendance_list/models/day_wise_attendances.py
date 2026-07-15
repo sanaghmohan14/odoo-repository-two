@@ -21,6 +21,7 @@ class DayWiseAttendances(models.Model):
 
     @api.model
     def generate_absentees(self):
+        """used to generate daily absentess list"""
         today = fields.Date.today()
         print(today)
 
@@ -32,8 +33,7 @@ class DayWiseAttendances(models.Model):
         for employee in employees:
             today_attendance = self.env['hr.attendance'].search([('employee_id', '=', employee.id),
                 ('check_in', '>=', fields.Datetime.to_datetime(today)),
-                ('check_in', '<', fields.Datetime.to_datetime(today + timedelta(days=1))),
-            ], limit=1)
+                ('check_in', '<', fields.Datetime.to_datetime(today + timedelta(days=1))) ], limit=1)
 
             print(today_attendance)
 
@@ -43,9 +43,11 @@ class DayWiseAttendances(models.Model):
 
             stayed = self.env['hr.attendance'].search([
                 ('employee_id', '=', employee.id),
-                ('check_out', '=', False),
-                ('check_in', '<', fields.Datetime.to_datetime(today)),
-            ], limit=1)
+                ('check_out', '=', False),('check_in', '<', fields.Datetime.to_datetime(today)),], limit=1)
+
+            print(stayed)
+            print(len(stayed))
+            print(employee.name)
 
             if stayed:
                 continue
@@ -72,6 +74,9 @@ class DayWiseAttendances(models.Model):
         #         absentee.unlink()
         #
         #     return records
+
+
+
 
 
 
