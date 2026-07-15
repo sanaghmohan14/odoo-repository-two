@@ -5,6 +5,7 @@ from datetime import datetime, timedelta
 
 class DayWiseAttendances(models.Model):
     _name = 'day.wise.attendances'
+    _order = 'date desc'
 
     employee_id = fields.Many2one('hr.employee',string='Employee')
     date = fields.Datetime(string='Date')
@@ -26,22 +27,46 @@ class DayWiseAttendances(models.Model):
         print(tomorrow)
         print(yesterday)
 
-
         employees = self.env["hr.employee"].search([('active', '=', True)])
-        print(employees)
+
         for employee in employees:
-            present = self.env['hr.attendance'].search([('employee_id', '=', employee.id),('check_in', '>=', today),('check_in', '<', tomorrow),('check_out', '=', yesterday)], limit=1)
-            absent = self.env['day.wise.attendances'].search([('employee_id', '=', employee.id)], limit=1)
-            print("c","=",absent)
-            if absent and present:
-                print("b", "=", absent)
-                absent.unlink()
-            if not present:
+
+            today_attendance = self.env['hr.attendance'].search([
+                ('employee_id', '=', employee.id),
+                ('check_in', '>=', fields.Datetime.to_datetime(today),),
+            ], limit=1)
+
+            if today_attendance:
+                continue
+
+            open_attendance = self.env['hr.attendance'].search([
+                ('employee_id', '=', employee.id),
+                ('check_out', '=', False),
+                ('check_in', '<', fields.Datetime.to_datetime(today)),
+            ], limit=1)
+
+            if open_attendance:
+                continue
+
+            exists = self.search([
+                ('employee_id', '=', employee.id),
+                ('date', '=', today),
+            ], limit=1)
+
+            if not exists:
                 self.create({
-                    "employee_id": employee.id,
-                    "date": today,
-                    "check_out":yesterday,
+                    'employee_id': employee.id,
+                    'date': today,
                 })
+
+
+
+
+
+
+
+
+
 
 
 
