@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+<data>
+
+        <record id="res_config_settings_view_form_custom" model="ir.ui.view">
+            <field name="name">res.config.settings.view.form.inherit.account</field>
+            <field name="model">res.config.settings</field>
+            <field name="priority" eval="40"/>
+            <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form" position="inside">
+<!--                    <app  data-string="vehicle repair" string="vehicle repair" >-->
+                            <block title="tag filtering" name="res_config_settings" >
+
+                            <setting string="vehicle repair" >
+                                <field name="customer_tag_ids" string="Customer Tag" widget="many2many_tags"/>
+
+                            </setting>
+                                <setting>
+                                    <field name="vendor_tag_ids"  string="Vendor Tag"  widget="many2many_tags" />
+                                </setting>
+                        </block>
+<!--                    </app>-->
+                </xpath>
+            </field>
+        </record>
+</data>
+
+
+</odoo>
