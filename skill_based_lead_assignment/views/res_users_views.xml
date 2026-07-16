@@ -8,7 +8,6 @@
             <xpath expr="//field[@name='role']" position="after">
                     <field name="tag_ids" string="Skill Tag" widget="many2many_tags" />
             </xpath>
-
         </field>
     </record>
 </odoo>

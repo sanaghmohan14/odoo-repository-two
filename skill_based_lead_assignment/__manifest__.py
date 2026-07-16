@@ -7,9 +7,9 @@
     'application': True,
     'installable': True,
     'auto_install': True,
-    'depends': ['base','crm'],
+    'depends': ['base','crm','mail'],
     'data': [
+        "views/crm_lead_views.xml",
         "views/res_users_views.xml",
-        # "views/crm_lead_views.xml",
            ]
 }

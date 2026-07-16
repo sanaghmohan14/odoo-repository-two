@@ -9,6 +9,3 @@ class CrmLead(models.Model):
     _description = "lead assignment based on tags"
 
     tag_ids = fields.Many2many('crm.tag', string="Tags", )
-
-    xx=fields.Integer(string="X")
-    yy=fields.Integer(string="Y")

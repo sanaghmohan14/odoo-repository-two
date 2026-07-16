@@ -1,14 +1,13 @@
 <?xml version='1.0' encoding='utf-8'?>
 <odoo>
     <record id="view_crm_lead_one" model="ir.ui.view">
-        <field name="name">Lead Assignment</field>
+        <field name="name">Lead_Assignment</field>
         <field name="model">crm.lead</field>
         <field name="inherit_id" ref="crm.crm_lead_view_form"/>
         <field name="arch" type="xml">
-       <xpath expr="//field[@name='priority']" position="after">
-
+             <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="xxx" string="Skill " />
             </xpath>
-
         </field>
     </record>
 </odoo>
