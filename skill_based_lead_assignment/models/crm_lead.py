@@ -14,20 +14,21 @@ class CrmLead(models.Model):
 
 
 
+
     @api.onchange('user_id')
     def _onchange_user_id(self):
         if not self.tag_ids:
             return
-
-        users = self.env['res.users'].search([('tag_ids', 'in', self.tag_ids)])
+        users = self.env['res.users'].search([('skill_tag_ids', 'in', self.tag_ids.ids)])
 
         for user in users:
             generated_leads = self.search_count([
                 ('user_id', '=', user.id),
                 ('type', '=', 'lead'),
                 ('active', '=', True),
+                ('stage_id.is_won','=', False),
             ])
 
-            if generated_leads <= 3:
+            if generated_leads == 3:
                 self.user_id = user.id
                 break
