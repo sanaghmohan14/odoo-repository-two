@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_fleet_service_order_checklist" model="ir.actions.act_window">
+
+        <field name="name">Fleet Service Order Checklist</field>
+        <field name="res_model">fleet.service.order.checklist</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+
+    <record id="fleet_service_checklist_form" model="ir.ui.view">
+        <field name="name">fleet service order form</field>
+        <field name="model">fleet.service.order.checklist</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="order_id" />
+                        <field name="product_id"/>
+                        <field name="is_done"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="fleet_service_checklist_tree" model="ir.ui.view">
+        <field name="name">fleet service check list </field>
+        <field name="model">fleet.service.order.checklist</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="order_id" />
+                <field name="product_id"/>
+                <field name="is_done"/>
+            </list>
+        </field>
+    </record>
+</odoo>
+

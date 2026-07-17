@@ -8,7 +8,8 @@
     'installable': True,
     'auto_install': True,
     'depends': ['base','stock'],
-    'data': ["views/stock_location_views.xml"
+    'data': ["views/stock_location_views.xml",
+             "views/stock_picking_views.xml"
 
 
            ]

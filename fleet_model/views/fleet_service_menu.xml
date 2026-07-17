@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="menu_fleet_service_root" name="Fleet Service Management"></menuitem>
+
+
+    <menuitem id="menu_fleet_service_order" name="Fleet Service Order"
+              parent="menu_fleet_service_root" action="action_fleet_service_order"></menuitem>
+
+
+    <menuitem id="menu_fleet_service_order_checklist" name="Fleet Service Order Checklist" parent="menu_fleet_service_root"
+              action="action_fleet_service_order_checklist"/>
+
+       <menuitem id="menu_fleet_service_order_part" name="Fleet Service Order parts" parent="menu_fleet_service_root"
+              action="action_fleet_service_order_part"/>
+
+
+
+
+</odoo>

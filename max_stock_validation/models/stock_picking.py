@@ -5,9 +5,42 @@ class PurchaseOrder(models.Model):
     _inherit = 'stock.picking'
 
 
-    def max_capacity(self):
-        for purchase in self:
-            purchase.max_capacity = max(purchase.max_capacity, purchase.max_capacity)
+
+    max_capacity = fields.Float(string="Maximum Capacity")
 
 
-            
+    # def capacity(self):
+    #     for i in self:
+    #         if i.picking_type_id == 'internal':
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
