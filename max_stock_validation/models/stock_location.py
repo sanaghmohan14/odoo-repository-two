@@ -6,5 +6,3 @@ class PurchaseOrder(models.Model):
 
     max_capacity = fields.Float(string="Maximum Capacity")
 
-
-    
