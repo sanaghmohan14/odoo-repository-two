@@ -26,7 +26,7 @@ class FleetServiceOrder(models.Model):
     grand_total=fields.Float(string="Grand Total",compute="_compute_grand_total")
     checklist_progress=fields.Float(string="Checklist Progress",compute="_compute_checklist_progress")
 
-    type_ids = fields.Many2many('checklist.type',string="Type")
+    type_ids = fields.Many2many('checklist.type',string="Types")
 
 
 
@@ -76,6 +76,9 @@ class FleetServiceOrder(models.Model):
             else:
                 rec.checklist_progress=0
 
+            if rec.checklist_progress==100 and rec.state=='done':
+                rec.state='done'
+
 
 
     def action_confrim(self):
@@ -92,4 +95,16 @@ class FleetServiceOrder(models.Model):
             rec.state='inprogress'
 
 
+
+    def generate_checklist(self):
+        for rec in self:
+            if rec.checklist_ids:
+                raise ValidationError("do not duplicate")
+
+            for checklist in rec.type_ids:
+                self.env['fleet.service.order.checklist'].create({
+                    'order_id':rec.id,
+                    'task_name':checklist.name,
+
+                })
 

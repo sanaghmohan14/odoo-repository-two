@@ -14,6 +14,9 @@
        <menuitem id="menu_fleet_service_order_part" name="Fleet Service Order parts" parent="menu_fleet_service_root"
               action="action_fleet_service_order_part"/>
 
+        <menuitem id="menu_checklist_type" name="Check List Types" parent="menu_fleet_service_root"
+              action="action_fleet_service_order_part"/>
+
 
 
 

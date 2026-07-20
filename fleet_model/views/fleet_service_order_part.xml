@@ -35,7 +35,6 @@
                 <field name="product_id"/>
                 <field name="quantity"/>
                 <field name="unit_price"/>
-
             </list>
         </field>
     </record>

@@ -17,6 +17,7 @@
                 <header>
                     <button string="confirm" type="object" name="action_confrim"/>
                     <button string="Start Service" type="object" name="action_start_service" />
+                    <button string="Generate Checklist" type="object"  name="generate_checklist" invisible="state not in ['confirmed']" />
                     <button string="cancel"  type="object" name="action_cancel" invisible="state  in ['done']"/>
                     <field name="state" widget="statusbar" options="{'clickable':'1'}" type="object"/>
                 </header>
@@ -34,6 +35,7 @@
                         <field name="service_date"/>
                         <field name="state"/>
                         <field name="labor_cost"/>
+                        <field name="type_ids" widget="many2many_tags"/>
                         <field name="parts_total"/>
                         <field name="grand_total"/>
                         <field name="checklist_progress"/>
