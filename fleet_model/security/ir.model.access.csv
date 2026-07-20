@@ -2,7 +2,7 @@ id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 
 
 
-fleet_model.access_service_order,access_service_order,fleet_model.model_fleet_service_order,fleet_model.group_base,1,1,1,1
-fleet_model.access_service_parts,access_service_parts,fleet_model.model_fleet_service_order_part,fleet_model.group_base,1,1,1,1
-fleet_model.access_service_checklist,access_service_checklist,fleet_model.model_fleet_service_order_checklist,fleet_model.group_base,1,1,1,1
+fleet_model.access_service_order,access_service_order,fleet_model.model_fleet_service_order,fleet_model.base.group_user,1,1,1,1
+fleet_model.access_service_parts,access_service_parts,fleet_model.model_fleet_service_order_part,fleet_model.base.group_user,1,1,1,1
+fleet_model.access_service_checklist,access_service_checklist,fleet_model.model_fleet_service_order_checklist,fleet_model.base.group_user,1,1,1,1
 

@@ -10,9 +10,13 @@
     'depends': ['base','fleet',"mail", "contacts",'account','product'],
     'data': [
         "data/reference.xml",
-        "views/fleet_service_order.xml",
-        "views/feet_service_order_checklist_views.xml",
+
+        "views/fleet_service_order_checklist_views.xml",
+
         "views/fleet_service_order_part.xml",
+
+        "views/fleet_service_order.xml",
+
         "views/fleet_service_menu.xml"
            ]
 }

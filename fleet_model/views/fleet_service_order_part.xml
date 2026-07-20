@@ -15,7 +15,7 @@
             <form>
                 <sheet>
                     <group>
-                        <field name="order_part_id"/>
+                        <field name="order_id"/>
                         <field name="product_id"/>
                         <field name="quantity"/>
                         <field name="unit_price"/>
@@ -31,10 +31,11 @@
         <field name="model">fleet.service.order.part</field>
         <field name="arch" type="xml">
             <list>
-                <field name="order_part_id"/>
+                <field name="order_id"/>
                 <field name="product_id"/>
                 <field name="quantity"/>
                 <field name="unit_price"/>
+
             </list>
         </field>
     </record>
