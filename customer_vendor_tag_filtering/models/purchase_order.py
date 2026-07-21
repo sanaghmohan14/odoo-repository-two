@@ -8,6 +8,9 @@ class PurchaseOrder(models.Model):
 
     allowed_vendor_tag_ids = fields.Many2many("res.partner.category", compute="_compute_allowed_vendor_tag")
 
+
+
+
     @api.depends("company_id")
 
     def _compute_allowed_vendor_tag(self):

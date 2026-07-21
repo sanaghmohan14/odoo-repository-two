@@ -46,8 +46,18 @@ class FleetServiceOrder(models.Model):
             return super().create(vals_list)
 
 
+
+    # @api.depends('part_ids.quantity','part_ids.unit_price')
+    # def _compute_parts_total(self):
+    #     for rec in self:
+    #         for i in rec.part_ids:
+    #
+    #             rec.parts_total=i.quantity*i.unit_price
+
+
     @api.depends('part_ids.quantity','part_ids.unit_price')
     def _compute_parts_total(self):
+        """used to compute the parts total based on quantity and unit_price"""
         for rec in self:
             total=0
             for i in rec.part_ids:
@@ -55,28 +65,36 @@ class FleetServiceOrder(models.Model):
             rec.parts_total=total
 
 
+
+
     @api.depends('labor_cost','parts_total')
     def _compute_grand_total(self):
+        """used to  compute the grand total based on labor cost and parts total"""
         for rec in self:
             rec.grand_total=rec.labor_cost+rec.parts_total
 
 
 
     def action_cancel(self):
+        """cancel buttion to shange the state to cancelled state"""
         self.state='cancelled'
 
 
     @api.depends('checklist_ids.is_done')
     def _compute_checklist_progress(self):
+        """is used to compute the progress percentage"""
         for rec in self:
             total=len(rec.checklist_ids)
+            print(total)
             if total:
                 done=len(rec.checklist_ids.filtered('is_done'))
+                # print(len(done))
                 rec.checklist_progress=(done/total)*100
+                print(rec.checklist_progress)
             else:
                 rec.checklist_progress=0
 
-            if rec.checklist_progress==100 and rec.state=='done':
+            if rec.checklist_progress==100 and rec.state=='inprogress':
                 rec.state='done'
 
 
@@ -97,11 +115,14 @@ class FleetServiceOrder(models.Model):
 
 
     def generate_checklist(self):
+        """used to generate the checklist from the service order"""
         for rec in self:
             if rec.checklist_ids:
+                print("oo")
                 raise ValidationError("do not duplicate")
 
             for checklist in rec.type_ids:
+                print("yes")
                 self.env['fleet.service.order.checklist'].create({
                     'order_id':rec.id,
                     'task_name':checklist.name,

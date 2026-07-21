@@ -10,6 +10,9 @@
     'depends': ['base','fleet',"mail", "contacts",'account','product'],
     'data': [
         # "security/ir.model.access.csv",
+        
+        "views/hr_employee_views.xml",
+
         "views/feet_vehicle.xml",
 
         "data/reference.xml",

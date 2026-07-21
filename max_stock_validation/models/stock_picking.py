@@ -10,15 +10,10 @@ class PurchaseOrder(models.Model):
     maximum_capacity = fields.Float(string="Maximum Capacity")
 
 
-
-
-
-
     def button_validate(self):
         for i in self:
             if i.picking_type_id.code=="internal":
                 location=i.location_dest_id
-                print("hi")
 
 
                 current_quantity=sum(self.env['stock.quant'].search([('location_id','=',location.id)]).mapped('quantity'))
@@ -30,27 +25,21 @@ class PurchaseOrder(models.Model):
                 capacity=location.max_capacity
                 print("capacity",capacity)
 
-                x=incoming_quantity
-
+                x=incoming_quantity+current_quantity
                 surplus=current_quantity-incoming_quantity
                 print("surplus",surplus)
-
-
-
 
                 if x>location.max_capacity:
                     products = " "
                     for j in i.move_ids:
-                        products = products + f"{j.product_id.display_name} : {j.quantity} \n\n"
+                        products = products + f"{j.product_id.display_name}\n\n"
 
                         raise ValidationError(
                             f"Maximum capacity reached\n\n\n\n"
                             f"surplus qantity: {surplus}\n\n"
-                            f"Products:\n{products}"
+                            f"Products:{products}\n"
                         )
-
                     # raise ValidationError("exceed maximum capacity")
-
                 else:
                     return super().button_validate()
 
