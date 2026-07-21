@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="menu_mrp_production_root" name="Manufacturing Order"></menuitem>
+
+
+    <menuitem id="menu_mrp_production" name="Manufacturing Production"
+              parent="menu_mrp_production_root" action="action_mrp_production"></menuitem>
+
+
+    <menuitem id="menu_mrp_production_material" name="Production Material" parent="menu_mrp_production_root"
+              action="action_mrp_production_material"/>
+
+
+
+</odoo>
