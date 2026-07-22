@@ -20,14 +20,10 @@ class MrpProductionMaterial(models.Model):
 
 
 
+
+    #
     # @api.depends('product_id')
     # def _compute_available_qty(self):
     #     for rec in self:
     #         rec.available_qty=rec.production_id.qty_available
-    #
-    # @api.depends('material_line_ids.consumed_qty','material_line_ids.required_qty')
-    # def _compute_material_total(self):
-    #     for rec in self:
-    #         rec.total_consumed=sum(rec.material_line_ids.mapped('consumed_qty'))
-    #         rec.remaing_material=sum(line.required_qty-line.consumed_qty for line in rec.material_line_ids)
-    #
+

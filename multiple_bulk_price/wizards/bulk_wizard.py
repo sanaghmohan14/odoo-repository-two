@@ -31,13 +31,13 @@ class BulkWizard(models.TransientModel):
                 print("new_price",new_price)
             product.list_price=new_price
 
-            # summary = summary+(product.name,new_price)
         summary="product price updated"
 
 
         return {'type': 'ir.actions.client',
                     'tag':'display_notification',
                     'params':{
-                        'message': _("product price updated"),
+                        'message': _("product price updated \n "),
+
                     }
                 }

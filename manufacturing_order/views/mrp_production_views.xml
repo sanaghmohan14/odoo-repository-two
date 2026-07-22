@@ -15,6 +15,10 @@
             <form>
                 <header>
                     <field name="state" widget="statusbar" options="{'clickable':'1'}" type="object"/>
+                    <button string="confirm Production" name="action_confirm_production" type="object"/>
+                    <button string="start production" type="object" name="action_start_production"/>
+                    <button string="Mark as done" type="object" name="action_done"/>
+
                 </header>
                 <sheet>
                        <group>
@@ -29,7 +33,7 @@
                         <field name="bom_id"/>
                         <field name="quantity"/>
                         <field name="planned_date"/>
-                        <field name="state"/>
+                        <field name="is_material_available"/>
                     </group>
                      <notebook>
                         <page  string="products">
