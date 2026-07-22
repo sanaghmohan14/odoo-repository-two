@@ -11,7 +11,7 @@
         </field>
     </record>
 
-<!--               <menuitem id="bulk_price_update_menu_new" name="Bulk Price" action="action_bulk_price"  />-->
+               <menuitem id="bulk_price_update_menu_new" name="Bulk Price" action="action_bulk_price"  />
 
 
 </odoo>

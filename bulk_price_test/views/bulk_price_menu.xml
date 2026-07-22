@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="bulk_price_root_menu" name="Bulk Price"></menuitem>
+
+        <menuitem id="Bulk_price_menu" name="Bulk Price"
+              parent="bulk_price_root_menu"  action="action_bulk_price"/>
+
+
+
+</odoo>

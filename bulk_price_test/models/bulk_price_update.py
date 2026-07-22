@@ -3,7 +3,7 @@ from odoo.exceptions import ValidationError
 
 
 class BulkPrice(models.Model):
-    _name = 'bulk.price'
+    _name = 'bulk.price.update'
 
 
     product_ids = fields.Many2many('product.product',string="Product")

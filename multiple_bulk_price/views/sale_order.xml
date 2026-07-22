@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record id="view_sale_order_move_new_one" model="ir.ui.view">
+        <field name="name">sale.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="sanagh"/>
+<!--                <button string="bulk price" type="object" />-->
+                <button name="%(multiple_bulk_price.create_bulk_s_wizard)d" type="action" string=" Create bulk"  ></button>
+
+
+            </xpath>
+        </field>
+    </record>
+
+               <menuitem id="bulk_menu_s" name="Bulk Price" action="create_bulk_s_wizard"/>
+
+                <menuitem id="bulk_menu_s" name="Bulk Price" action="create_bulk_s_wizard" parent="sale.product_menu_catalog" />
+
+
+</odoo>

@@ -1,0 +1,10 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+
+
+
+multiple_bulk_price.access_bulk_wizard_manager,access_bulk_wizard_manager,multiple_bulk_price.model_bulk_wizard,multiple_bulk_price.group_update_manager,1,1,1,1
+
+multiple_bulk_price.access_bulk_wizard_tech,access_bulk_wizard_tech,multiple_bulk_price.model_bulk_wizard,multiple_bulk_price.group_update_technician,0,0,0,0
+
+

@@ -6,8 +6,7 @@
         <menuitem id="menu_day_wise_attendance" name="Absentees List"
               parent="day_wise_attendance_root_menu"  action="action_attendance_list_management"/>
 
-            <menuitem id="bulk_price_update_menu" name="Bulk Price"
-              parent="day_wise_attendance_root_menu"  action="action_bulk_price"/>
+            <menuitem id="bulk_price_update_menu" name="Bulk Price" action="action_bulk_price"/>
 
 
 

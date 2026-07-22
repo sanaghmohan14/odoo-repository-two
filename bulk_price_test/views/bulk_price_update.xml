@@ -4,14 +4,14 @@
     <record id="action_bulk_price" model="ir.actions.act_window">
 
         <field name="name">Bulk Price Update</field>
-        <field name="res_model">bulk.price</field>
+        <field name="res_model">bulk.price.update</field>
         <field name="view_mode">form</field>
 <!--        <field name="target">new</field>-->
     </record>
 
     <record id="bulk_price_wizard" model="ir.ui.view">
         <field name="name">bulk.price.from</field>
-        <field name="model">bulk.price</field>
+        <field name="model">bulk.price.update</field>
         <field name="arch" type="xml">
             <form>
                 <header>

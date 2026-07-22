@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<!--    <record id="action_bulk_price_update_new_wizard" model="ir.actions.act_window">-->
+
+<!--        <field name="name">Bulk Price Update</field>-->
+<!--        <field name="res_model">price.update</field>-->
+<!--        <field name="view_mode">form</field>-->
+<!--&lt;!&ndash;        <field name="target">new</field>&ndash;&gt;-->
+<!--    </record>-->
+
+
+    <record id="bulk_wizard" model="ir.ui.view">
+        <field name="name">bulk.wizard.form</field>
+        <field name="model">bulk.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button type="object" string="Apply change" name="action_apply"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="product_ids" widget="many2many_tags"/>
+                        <field name="price_update_type" />
+                        <field name="product_price"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="create_bulk_s_wizard" model="ir.actions.act_window">
+        <field name="name">Bulk  Wizard</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">bulk.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="bulk_wizard"/>
+        <field name="target">new</field>
+    </record>
+
+
+</odoo>
