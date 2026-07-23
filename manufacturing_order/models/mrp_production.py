@@ -17,6 +17,14 @@ class MrpProductionExt(models.Model):
     material_line_ids = fields.One2many("mrp.production.material","production_id",string="materials",)
     is_material_available = fields.Boolean(compute="_compute_material_available",store=True, string="material available")
 
+    material_count=fields.Integer(compute="_compute_material_count",store=True, string="Materials")
+
+    total_consumed=fields.Float(compute="_compute_total",store=True, string="Total consumed")
+
+    remaining_materials=fields.Float(compute="compute_total")
+
+    produced_qty = fields.Float(string="produced qty")
+
 
 
 
@@ -69,17 +77,17 @@ class MrpProductionExt(models.Model):
         self.material_line_ids = x
 
 
-    def action_confirm(self):
-        if not self.bom_id:
-            raise ValidationError("Please select a bill of material")
-        if not self.product_id:
-            raise ValidationError("Please select a product")
-        self.state = "confirmed"
+    # def action_confirm(self):
+    #     if not self.bom_id:
+    #         raise ValidationError("Please select a bill of material")
+    #     if not self.product_id:
+    #         raise ValidationError("Please select a product")
+    #     self.state = "confirmed"
 
     def action_start(self):
         print("hi")
 
-
+ #material avai
     @api.depends("material_line_ids.required_qty", "material_line_ids.available_qty")
     def _compute_material_available(self):
         for rec in self:
@@ -90,19 +98,104 @@ class MrpProductionExt(models.Model):
 
 
 
+    # def action_done(self):
+    #     self.state = "done"
+    #
+    #
+    # def action_confirm_production(self):
+    #     self.state = "confirmed"
+    #
+    #
+    # def action_start_production(self):
+    #     self.state = "inprogress"
+
+#material count
+
+    def _compute_material_count(self):
+        for rec in self:
+            rec.material_count=len(rec.material_line_ids)
+
+    #total consumed
+
+    @api.depends("material_line_ids.required_qty","material_line_ids.available_qty")
+    def _compute_total(self):
+        for rec in self:
+            rec.total_consumed=sum(rec.material_line_ids.mapped("consumed_qty"))
+
+            rec.remaining_materials=sum(line.required_qty-line.consumed_qty for line in rec.material_line_ids)
+
+
+    #confirm production
+    def action_confirm(self):
+        for rec in self:
+            if not rec.bom_id:
+                raise ValidationError("Please select a bill of material")
+            if rec.quantity <= 0:
+                raise ValidationError("Please select a bill of material")
+            if not rec.product_id.is_manufacturable:
+                raise ValidationError("Please select a manufacturable product")
+            rec.state = "inprogress"
+
+
+    #start production
+    def action_start(self):
+        for rec in self:
+            if not rec.is_material_available:
+                raise ValidationError("materials are not avaialable")
+            rec.state="inprogress"
+
+
+    #consume material
+
+    def _action_consume_material(self):
+        for rec in self:
+            for line in rec.material_line_ids:
+                if line.consumed_qty > line.required_qty:
+                    raise ValidationError("consmed qty cannot exceed required qty")
+                line.consumed_qty = line.consumed_qty
+
+
+    #view materials
+    def action_view_material(self):
+        return{
+            "type": "ir.actions.act_window",
+            "name":"materials",
+            "res_model":"mrp.production.material",
+            "view_mode":"list,form",
+            "domain":["production_id","=",self.id],
+
+        }
+
+    def action_cancel(self):
+        self.state = "cancelled"
+
+        #mark dine
+
     def action_done(self):
-        self.state = "done"
+        for rec in self:
+            for line in rec.material_line_ids:
+                if line.consumed_qty<line.required_qty:
+                    raise ValidationError("required qty must")
+                rec.state = "done"
+
+    #partial
+
+    def action_produce_partial(self):
+        for rec in self:
+            if rec.produced_qty<=0:
+                raise ValidationError("enter product qty")
+
+            if rec.produced_qty>rec.quantity:
+                raise ValidationError("produced > production")
 
 
-    def action_confirm_production(self):
-        self.state = "confirmed"
+            rec.quantity=rec.quantity-rec.produced_qty
 
+            rec.produced_qty=0
 
-    def action_start_production(self):
-        self.state = "inprogress"
-
-
-
+            rec._load_material_lines()
+            if rec.quantity==0:
+                rec.state = "done"
 
 
 

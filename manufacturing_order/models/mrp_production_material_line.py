@@ -13,17 +13,23 @@ class MrpProductionMaterial(models.Model):
     required_qty = fields.Float(string="Required Qty")
     available_qty = fields.Float(string="Available Qty")
     consumed_qty = fields.Float(string="Consumed Qty")
-    is_material_available = fields.Boolean(string="Is Material Available")
-    total_consumed = fields.Float(string="Total Consumed")
-    remaing_material = fields.Float(string="Remaing Material")
+    # is_material_available = fields.Boolean(string="Is Material Available")
+    # total_consumed = fields.Float(string="Total Consumed")
+    # remaing_material = fields.Float(string="Remaing Material")
 
 
 
 
+    @api.depends('product_id')
+    def _compute_available_qty(self):
+        for rec in self:
+            rec.available_qty=rec.product_id.qty_available
 
-    #
-    # @api.depends('product_id')
-    # def _compute_available_qty(self):
-    #     for rec in self:
-    #         rec.available_qty=rec.production_id.qty_available
+
+
+    @api.constrains('consumed_qty','required_qty')
+    def _check_consumed_qty(self):
+        for rec in self:
+            if rec.consumed_qty>rec.required_qty:
+                raise ValidationError("consumed qty> req qty")
 
