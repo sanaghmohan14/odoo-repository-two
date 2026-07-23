@@ -1,3 +1,5 @@
 from . import mrp_production
 
 from . import mrp_production_material_line
+
+from . import product_product

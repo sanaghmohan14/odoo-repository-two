@@ -11,7 +11,7 @@ class MrpProductionMaterial(models.Model):
     production_id = fields.Many2one('mrp.production.ext',string="Production Name")
     product_id = fields.Many2one('product.product',string="Materials Required")
     required_qty = fields.Float(string="Required Qty")
-    available_qty = fields.Float(string="Available Qty")
+    available_qty = fields.Float(string="Available Qty",compute='_compute_available_qty')
     consumed_qty = fields.Float(string="Consumed Qty")
     # is_material_available = fields.Boolean(string="Is Material Available")
     # total_consumed = fields.Float(string="Total Consumed")
@@ -31,5 +31,5 @@ class MrpProductionMaterial(models.Model):
     def _check_consumed_qty(self):
         for rec in self:
             if rec.consumed_qty>rec.required_qty:
-                raise ValidationError("consumed qty> req qty")
+                raise ValidationError("consumed qty > req qty")
 

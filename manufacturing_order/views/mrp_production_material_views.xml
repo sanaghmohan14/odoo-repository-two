@@ -21,7 +21,7 @@
                         <field name="required_qty"/>
                         <field name="available_qty"/>
                         <field name="consumed_qty"/>
-                        <field name="is_material_available"/>
+<!--                        <field name="is_material_available"/>-->
                     </group>
 
                 </sheet>

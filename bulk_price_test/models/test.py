@@ -42,3 +42,23 @@
 #     for rec in self:
 #         rec.total_consumed = sum(rec.material_line_ids.mapped('consumed_qty'))
 #         rec.remaing_material = sum(line.required_qty - line.consumed_qty for line in rec.material_line_ids)
+
+
+# partial
+
+
+# def action_produce_partial(self):
+#     for rec in self:
+#         if rec.produced_qty <= 0:
+#             raise ValidationError("enter product qty must be > 0")
+#
+#         if rec.produced_qty > rec.quantity:
+#             raise ValidationError("produced > production")
+#
+#         rec.quantity = rec.quantity - rec.produced_qty
+#
+#         rec.produced_qty = 0
+#
+#         rec._load_material_lines()
+#         if rec.quantity == 0:
+#             rec.state = "done"

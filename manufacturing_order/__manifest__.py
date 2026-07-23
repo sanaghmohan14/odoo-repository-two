@@ -11,9 +11,9 @@
     'data': [
         "security/ir.model.access.csv",
         "data/reference.xml",
+        "views/product_product_views.xml",
         "views/mrp_production_material_views.xml",
         "views/mrp_production_views.xml",
         "views/mrp_menu.xml",
-
     ]
 }
