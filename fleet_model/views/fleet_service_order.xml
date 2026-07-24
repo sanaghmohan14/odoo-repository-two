@@ -31,7 +31,7 @@
                     <group>
                         <field name="name"/>
                         <field name="vehicle_id" domain="[('service_blocked','=',False)]"/>
-                        <field name="technician_id" domain="[('is_available_technician', '=', True)]" />
+<!--                        <field name="technician_id" domain="[('is_available_technician', '=', True)]" />-->
                         <field name="service_date"/>
                         <field name="state"/>
                         <field name="labor_cost"/>

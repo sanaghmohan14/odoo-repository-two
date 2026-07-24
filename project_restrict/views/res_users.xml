@@ -1,12 +1,15 @@
 <?xml version='1.0' encoding='utf-8'?>
 <odoo>
-    <record id="view_res_users_one" model="ir.ui.view">
-        <field name="name">Res Users</field>
+    <record id="users_one" model="ir.ui.view">
+        <field name="name">user</field>
         <field name="model">res.users</field>
         <field name="inherit_id" ref="base.view_users_form"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='role']" position="after">
-<!--                    <field name="skill_tag_ids" string="" widget="many2many_tags" />-->
+                    <field name="skill_types" string="Skills" widget="many2many_tags"/>
+
+<!--                    <field name="restricted_count" invisible="restricted != True"/>-->
+
             </xpath>
         </field>
     </record>

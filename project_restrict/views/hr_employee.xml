@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record id="hr_one" model="ir.ui.view">
+        <field name="name">HR</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='company_id']" position="after">
+                    <field name="skill_types" string="Skills" widget="many2many_tags"/>
+
+<!--                    <field name="restricted_count" invisible="restricted != True"/>-->
+
+            </xpath>
+        </field>
+    </record>
+</odoo>

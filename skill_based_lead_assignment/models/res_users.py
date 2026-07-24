@@ -8,4 +8,4 @@ class CrmLead(models.Model):
 
     _description = "lead assignment based on tags"
 
-    skill_tag_ids = fields.Many2many('crm.tag', string="Tags", )
+    skill_tag_ids = fields.Many2many('crm.tag', )
