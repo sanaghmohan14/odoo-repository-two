@@ -1,5 +1,7 @@
+
 from odoo import models,fields,api
-from odoo.release import description
+
+from odoo.exceptions import ValidationError
 
 
 class ProjectProject(models.Model):
@@ -10,6 +12,14 @@ class ProjectProject(models.Model):
 
 
 
+    # @api.model_create_multi
+    # def create(self, vals_list):
+    #     tasks = super().create(vals_list)
+    #     for task in tasks:
+    #         employee = self.env["hr.employee"].search([("skill_type", 'in', task.tag_ids.ids)], limit=1)
+    #         if employee and employee.user_id:
+    #             task.user_ids = [(4, employee.user_id.id)]
+    #     return tasks
 
 
     @api.onchange('tag_ids')
@@ -25,37 +35,38 @@ class ProjectProject(models.Model):
 
 
 
-
-    @api.onchange("user_ids")
-    def _onchange_user_ids(self):
-        self._load_time_lines()
-
-
-    def _load_time_lines(self):
-        x = []
-        if not self.user_ids:
-            return {
-                "warning": {
-                    "title": "Warning",
-                    "message": "no user to add time sheet"
-                }
-            }
-        for line in self.timesheet_ids:
-            x.append(
-                fields.Command.create({
-                    "user_id": line.user_ids.id,
-                })
-            )
-        self.timesheet_ids = x
+    def write(self,vals):
+        result=super().write(vals)
+        if "stage_id" in vals:
+            for task in self:
+                if task.stage_id.name=="In Progress":
+                    already=self.env["account.analytic.line"].search([('task_id','=',task.id),("employee_id","=",task.user_ids.employee_id.id)], limit=1)
+                    if not already:
+                        self.env['account.analytic.line'].create({
+                            "name": task.name,
+                            "task_id": task.id,
+                            "employee_id":task.user_ids.employee_id.id,
+                            "date":fields.Date.today(),
+                            "unit_amount":0
+                        })
+        return result
 
 
 
 
 
+    def write(self,vals):
+        result=super().write(vals)
+        if "stage_id" in vals:
+            for task in self:
+                if task.stage_id.name=="Done":
+                    total_hours=sum(task.timesheet_ids.mapped("unit_amount"))
+
+                    if total_hours<=0:
+                        raise ValidationError("less than zero")
+        return result
 
 
-    @api.onchange('stage_id')
-    def _onchange_stage_id(self):
-        if self.state =='done':
 
-            if not rec.effective_hours
+
+
