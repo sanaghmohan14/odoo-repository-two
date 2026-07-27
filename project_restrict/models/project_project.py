@@ -7,7 +7,7 @@ from odoo.exceptions import ValidationError
 class ProjectProject(models.Model):
     _inherit = "project.task"
 
-    sanagh=fields.Char(string="new")
+
 
 
 
@@ -19,12 +19,9 @@ class ProjectProject(models.Model):
         if not self.tag_ids:
             return
         users = self.env['res.users'].search([('skill_types', 'in', self.tag_ids.ids)])
-        print(users.mapped("name"))
-
 
         if users:
             self.user_ids=users
-
 
 
     def write(self,vals):
@@ -39,14 +36,15 @@ class ProjectProject(models.Model):
                 if task.stage_id.name=="In Progress":
                     print("inprogress is ok")
 
-                    already=self.env["account.analytic.line"].search([
+                    timesheet_check=self.env["account.analytic.line"].search([
                         ('task_id','=',task.id),("employee_id","=",task.user_ids.employee_id.id)])
 
-                    print(already)
+                    print(timesheet_check)
 
                     user=task.user_ids[:1]
+                    print(user)
 
-                    if not already:
+                    if not timesheet_check:
                         self.env['account.analytic.line'].create({
                             "name": task.name,
                             "task_id": task.id,
@@ -57,17 +55,21 @@ class ProjectProject(models.Model):
                             "unit_amount":0
                         })
 
+
                 if task.stage_id.name == "Done":
                     print("done is ok")
 
-                    total_hours = sum(task.timesheet_ids.mapped("unit_amount"))
-                            # total_hours=sum(task.unit_amount)
-                            # if task.unit_amount<=0:
+                    total_hours = task.timesheet_ids.unit_amount
+
+
+                    print("total_hours",total_hours)
 
                     if total_hours <= 0:
                         raise ValidationError("less than zero")
 
         return result
+
+
 
 
 

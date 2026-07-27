@@ -11,3 +11,5 @@ class HrEmployee(models.Model):
 
     skill_types = fields.Many2many('project.tags',string="Project skills")
 
+
+
