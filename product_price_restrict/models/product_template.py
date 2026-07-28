@@ -13,6 +13,7 @@ class ProductProduct(models.Model):
 
 
     def write(self, vals):
+        """used to change the price of product template based on different criteria"""
         if "list_price" in vals:
             new_price = vals["list_price"]
             print(new_price)
@@ -50,3 +51,6 @@ class ProductProduct(models.Model):
             for product in self:
                 product.last_price_update = fields.Date.today()
         return result
+
+
+
