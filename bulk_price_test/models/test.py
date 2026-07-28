@@ -1,8 +1,7 @@
 # hi
 # "        meetings = self.env['calendar.event'].search_count([('opportunity_id', '=', rec.id)])
 #             # meetings=self.env['calendar.event'].search_count([('opportunity_id','=',rec.id)])"
-
-
+from datetime import timedelta
 
 
 #project
@@ -31,4 +30,20 @@
 
 
 
+# ("order_id.state", "in", ["sales", "done"])
+
+# product.product_variant_ids.write(
+#     {
+#         "last_price_update": fields.Date.today(),
+#
+#     }
+# )
+
 # total_hours = sum(task.timesheet_ids.mapped("unit_amount"))
+
+
+
+
+
+
+
