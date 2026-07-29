@@ -10,8 +10,8 @@
     'auto_install': True,
     'depends': ["sale","mail", "contacts",'account','product','fleet'],
     'data': [
-        "security/ir.model.access.csv",
-        "security/user_groups.xml",
+        # "security/ir.model.access.csv",
+        # "security/user_groups.xml",
         "wizards/bulk_wizard.xml",
         "views/sale_order.xml",
              ]

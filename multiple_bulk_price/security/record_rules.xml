@@ -13,16 +13,16 @@
 <!--    </record>-->
 
 
-    <record id="price_update_record_rule" model="ir.rule">
-        <field name="name">price update record rules</field>
-        <field name="model_id" ref="model_bulk_wizard" />
-        <field name="groups" eval="[(4, ref('multiple_bulk_price.group_update_technician'))]"/>
-<!--        <field name="domain_force">[('create_uid', '=', user.id)]</field>-->
-        <field name="perm_read" eval="True"/>
-        <field name="perm_write" eval="True"/>
-        <field name="perm_create" eval="True"/>
-        <field name="perm_unlink" eval='False'/>
-    </record>
+<!--    <record id="price_update_record_rule" model="ir.rule">-->
+<!--        <field name="name">price update record rules</field>-->
+<!--        <field name="model_id" ref="model_bulk_wizard" />-->
+<!--        <field name="groups" eval="[(4, ref('multiple_bulk_price.group_update_technician'))]"/>-->
+<!--&lt;!&ndash;        <field name="domain_force">[('create_uid', '=', user.id)]</field>&ndash;&gt;-->
+<!--        <field name="perm_read" eval="True"/>-->
+<!--        <field name="perm_write" eval="True"/>-->
+<!--        <field name="perm_create" eval="True"/>-->
+<!--        <field name="perm_unlink" eval='False'/>-->
+<!--    </record>-->
 
 
 </odoo>

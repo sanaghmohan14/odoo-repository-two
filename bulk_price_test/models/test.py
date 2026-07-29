@@ -42,8 +42,23 @@ from datetime import timedelta
 # total_hours = sum(task.timesheet_ids.mapped("unit_amount"))
 
 
-
-
+# @api.model
+# def _hide_menu(self, debug=False):
+#     menus = super()._hide_menus(debug)
+#     hidden_menu_ids = self.env.user.menus_ids.ids
+#     if hidden_menu_ids:
+#         def remove_menu(children):
+#             result = []
+#             for menu in children:
+#                 if menu["id"] not in hidden_menu_ids:
+#                     if menu.get("children"):
+#                         menu["children"]=remove_menu(menu["children"])
+#                         result.append(menu)
+#
+#             return result
+#
+#         menus["children"] = remove_menu(menus["children"])
+#         return menus
 
 
 

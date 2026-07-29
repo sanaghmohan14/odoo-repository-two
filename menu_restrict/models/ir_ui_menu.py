@@ -8,10 +8,25 @@ class IrUiMenu(models.Model):
 
 
 
+    # @api.model
+    # def _hide_menus(self)
 
-    @api.model
-    def hide_menu(self):
-        for menu in self:
-            print("one")
-            menus=self.env['ir.ui.menu'].search([('id','=',menu.id)])
-            hidden_menu
+
+
+
+
+    # def _visible_menu_ids(self,debug=False):
+    #     menus=super()._visible_menu_ids(debug)
+    #     hidden=self.env.user.menu_ids.ids
+    #     visible=menus-hidden
+    #     return visible
+
+
+
+
+    def _filter_visible_menus(self):
+        menus = super()._filter_visible_menus()
+        hidden=self.env.user.menus_ids.ids
+        if hidden:
+            menus=menus.filtered(lambda m: m.id not in hidden)
+        return menus
