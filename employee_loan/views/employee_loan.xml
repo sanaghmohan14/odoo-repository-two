@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_employee_loan_one" model="ir.actions.act_window">
+
+        <field name="name">Employee loan</field>
+        <field name="res_model">employee.loan</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="employee_loan_service_form" model="ir.ui.view">
+        <field name="name">Employee Loan</field>
+        <field name="model">employee.loan</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field name="state" widget="statusbar" options="{'clickable':'1'}" type="object"/>
+                     <button string="Approve Loan" type="object" name="action_approve_loan" invisible="state  in ['approved']"/>
+                    <button string="Generate Installments" type="object" name="action_create_installment" invisible="state  not in ['approved']"/>
+                </header>
+                <sheet>
+                              <div name="button_box" class="oe_button_box">
+                            <button class="oe_stat_button"
+                                    type="object" icon="fa-wrench" name="action_view_material" string="Loans">
+                                <div class="o_stat_info">
+                                    <field name="loan_counts" string="Loans"/>
+                                    <field name="employee_loan_history" widget="statinfo" string="Loans"/>
+                                </div>
+                            </button>
+                       </div>
+                    <group>
+                    <group>
+                        <field name="name"/>
+                        <field name="employee_id"/>
+                        <field name="loan_amount"/>
+                        <field name="installment_count"/>
+                        <field name="start_date"/>
+                    </group>
+                    <group>
+                        <field name="installment_amount"/>
+                        <field name="total_payable"/>
+                    </group>
+                    </group>
+
+                        <notebook>
+                        <page  string="loan">
+                            <field name="loan_line_ids">
+                            <list editable="bottom">
+                                   <field name="loan_id"/>
+                        <field name="date"/>
+                        <field name="amount"/>
+                        <field name="paid"/>
+                            </list>
+
+                            </field>
+                        </page>
+                    </notebook>
+
+
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="employee_loan_tree" model="ir.ui.view">
+        <field name="name">Employee loan Tree</field>
+        <field name="model">employee.loan</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                        <field name="employee_id"/>
+                        <field name="loan_amount"/>
+                        <field name="installment_count"/>
+                        <field name="start_date"/>
+                        <field name="state"/>
+            </list>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+
+        <record id="employee_loan_one_one" model="ir.sequence">
+            <field name="name">Loan reference</field>
+            <field name="code">employee.loan</field>
+            <field name="prefix">FS</field>
+            <field name="padding">2</field>
+            <field name="number_increment">1</field>
+
+        </record>
+    </data>
+</odoo>

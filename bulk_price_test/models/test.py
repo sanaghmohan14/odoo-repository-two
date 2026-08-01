@@ -61,4 +61,21 @@ from datetime import timedelta
 #         return menus
 
 
-
+#
+#     def _get_report_values(self,docids,data=None)
+#         wizard=self.env['vehicle.report.wizard'].browse(docids)
+#         query="""
+#         select   vs.name ,rp.name as customer , ru.name as service_advisor,
+# vm.name as vechicle_model
+#
+#
+# from vechicle_service vs
+# left join res_partner rp on rp.id=vs.partner_id
+# left join res_users u on u.id=vs.advisor_id
+# left join res_partner ru on ru.id=u.partner_id
+# left join fleet_vehicle_model vm on vm.id=vs.vehicle_model_id;
+#
+#         """
+#
+#         params=[]
+#         if wizard.start_date

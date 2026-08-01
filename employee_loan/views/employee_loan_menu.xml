@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="menu_employee_loan_root" name="Employee Loan"></menuitem>
+
+
+    <menuitem id="menu_employee_loan_one" name="Employee Loan"
+              parent="menu_employee_loan_root" action="action_employee_loan_one" ></menuitem>
+
+    <menuitem id="menu_employee_loan_line_one" name="Employee Loan Line" parent="menu_employee_loan_root"
+    action="action_employee_loan_line_one"/>
+
+
+</odoo>
