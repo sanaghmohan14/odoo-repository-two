@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="product_service_root_one_two" name="Product Price Change"></menuitem>
+
+
+    <menuitem id="product_price_change_new_one" name="Price Change"
+              parent="product_service_root_one_two" action="action_product_service_history_one" ></menuitem>
+
+
+
+
+</odoo>

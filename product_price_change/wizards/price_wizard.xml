@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <record id="price_change_wizard" model="ir.ui.view">
+        <field name="name">price</field>
+        <field name="model">price.change.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button type="object" string="Submit" name="action_product_history"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="reason_to_change"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="create_price_change_wizard" model="ir.actions.act_window">
+        <field name="name">price  Wizard</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">price.change.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="price_change_wizard"/>
+        <field name="target">new</field>
+    </record>
+
+
+</odoo>

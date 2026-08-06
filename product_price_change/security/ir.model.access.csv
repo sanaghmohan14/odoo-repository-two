@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+
+
+product_price_change.access_price_change_one,access_price_change_one,product_price_change.model_product_service_history,base.group_user,1,1,1,1
+
+
+product_price_change.access_price_wizard_one,access_price_wizard_one,product_price_change.model_price_change_wizard,base.group_user,1,1,1,1
+

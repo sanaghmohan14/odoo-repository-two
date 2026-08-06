@@ -57,15 +57,6 @@ class EmployeeLoan(models.Model):
             rec.installment_amount=rec.loan_amount/rec.installment_count
 
 
-
-
-
-
-
-
-
-
-
     #
     # @api.onchange('loan_amount')
     # def _onchange_loan_amount(self):
@@ -108,20 +99,31 @@ class EmployeeLoan(models.Model):
         }
 
 
-    # def action_create_installment(self):
-    #     for rec in self:
-    #
+    amount = fields.Float(string="Loan Amount")
+    installment_date = fields.Datetime(string="Installment Date")
+    def action_create_installment(self):
+        for rec in self:
+            rec.amount=rec.total_payable/rec.installment_count
+            rec.installment_date=rec.start_date
+            for i in range(rec.installment_count):
+                self.env['employee.loan.line'].create(
+                    {
+                        'loan_id':rec.id,
+                        'date':'installment_date',
+                        'amount':'amount'
+                    }
+                )
 
 
+    def action_pay_installment(self):
+        for rec in self:
+            for line in rec.loan_line_ids:
+                if not line.paid:
+                    line.paid=True
+                    break
 
-
-
-
-
-
-
-
-
+            if all(line.paid for line in rec.loan_line_ids):
+                rec.state='paid'
 
 
     #

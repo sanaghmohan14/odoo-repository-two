@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_product_service_history_one" model="ir.actions.act_window">
+
+        <field name="name">History</field>
+        <field name="res_model">product.service.history</field>
+        <field name="view_mode">list,form</field>
+    </record>
+    <record id="product_price_change_form" model="ir.ui.view">
+        <field name="name">price form</field>
+        <field name="model">product.service.history</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="product_id"/>
+
+                        <field name="previous_price"/>
+
+                        <field name="new_price"/>
+                        <field name="changed_by"/>
+                        <field name="changed_date"/>
+                        <field name="reason_to_change"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="product_price_change_Tree" model="ir.ui.view">
+        <field name="name">price Tree</field>
+        <field name="model">product.service.history</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="new_price"/>
+                <field name="previous_price"/>
+                <field name="changed_by"/>
+                <field name="changed_date"/>
+                <field name="reason_to_change"/>
+            </list>
+        </field>
+    </record>
+
+
+</odoo>

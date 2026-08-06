@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+
+        <record id="machine_use_one_one" model="ir.sequence">
+            <field name="name">Machine Reference</field>
+            <field name="code">machine.uses</field>
+            <field name="prefix">MU</field>
+            <field name="padding">2</field>
+            <field name="number_increment">1</field>
+
+        </record>
+    </data>
+</odoo>

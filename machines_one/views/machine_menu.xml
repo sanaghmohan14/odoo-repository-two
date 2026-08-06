@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="menu_machine_root" name="Machines"></menuitem>
+
+
+    <menuitem id="menu_machine_uses_one" name="Machine Use"
+              parent="menu_machine_root" action="action_machine_uses_one" ></menuitem>
+
+    <menuitem id="menu_machine_tools_one" name="Machine Tools" parent="menu_machine_root"
+    action="action_machine_tools_one"/>
+
+
+</odoo>
