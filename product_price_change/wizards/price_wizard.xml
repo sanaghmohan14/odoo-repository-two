@@ -8,10 +8,11 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <button type="object" string="Submit" name="action_product_history"/>
+                    <button type="object" string="Submit" name="action_confirm"/>
                 </header>
                 <sheet>
                     <group>
+                        <field name="new_price"/>
                         <field name="reason_to_change"/>
                     </group>
                 </sheet>

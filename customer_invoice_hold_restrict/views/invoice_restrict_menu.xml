@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="customer_invoice_hold_one" name="Invoice Hold"></menuitem>
+
+
+    <menuitem id="customer_invoice_hold_restrict_one" name="Invoice Hold"
+              parent="customer_invoice_hold_one" action="action_customer_invoice_hold_one" ></menuitem>
+
+
+
+
+</odoo>

@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+
+customer_invoice_hold_restrict.access_invoice_hold_one,access_invoice_hold_one,customer_invoice_hold_restrict.model_customer_invoice_hold,base.group_user,1,1,1,1
