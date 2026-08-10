@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="revision_tracking_menu_root" name="Revision Tracking"></menuitem>
+
+
+    <menuitem id="revision_tracling_menu_one" name="Revision Tracking"
+              parent="revision_tracking_menu_root" action="action_revision_tracking_one" ></menuitem>
+
+
+
+
+</odoo>

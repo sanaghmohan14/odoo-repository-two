@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record id="revision_sale" model="ir.ui.view">
+        <field name="name">sale.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='payment_term_id']" position="after">
+                <field name="revision_notes"/>
+            </xpath>
+
+                       <xpath expr="//div[hasclass('oe_button_box')]" position="inside">
+                             <button class="oe_stat_button"
+                                type="object" icon="fa-wrench" name="action_product_history">
+<!--                                 <button name="%(product_price_change.create_price_change_wizard)d" type="action" string=""  ></button>-->
+                            <div class="o_stat_info">
+<!--                                <field name="repairs_count"/>-->
+<!--                                 <field name="product_history" widget="statinfo" string="Product History"/>-->
+
+                            </div>
+                        </button>
+            </xpath>
+        </field>
+    </record>
+</odoo>

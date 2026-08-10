@@ -15,3 +15,51 @@
 
 
 <!--</odoo>-->
+
+<odoo>
+    <template id="" name="">
+        <t t-call="website.layout">
+            <h1 class="mb-4">Vehicle Repair Services</h1>
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Service</th>
+                        <th>Service</th>
+                        <th>Service</th>
+                        <th>Service</th>
+                        <th>Service</th>
+                        <th>Service</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <t t-foreach="services" t-as="service">
+                        <tr>
+                            <td>
+                                <t t-esc="service.name"/>
+                            </td>
+                               <td>
+                                <t t-esc="service.name"/>
+                            </td>
+                               <td>
+                                <t t-esc="service.name"/>
+                            </td>
+                               <td>
+                                <t t-esc="service.name"/>
+                            </td>
+                               <td>
+                                <t t-esc="service.name"/>
+                            </td>
+                               <td>
+                                <t t-esc="service.name"/>
+                            </td>
+                               <td>
+                                <t t-esc="service.name"/>
+                            </td>
+                        </tr>
+                    </t>
+                </tbody>
+            </table>
+        </t>
+    </template>
+</odoo>

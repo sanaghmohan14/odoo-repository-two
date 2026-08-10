@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+
+
+revision_tracking.access_revision_one,access_revision_one,revision_tracking.model_revision_tracking,base.group_user,1,1,1,1
+
+
+

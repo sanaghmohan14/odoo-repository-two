@@ -29,6 +29,9 @@ class AccountMove(models.Model):
                         'invoice_hold': False,
                     })
 
+                    rec.action_post()
+            return True
+
 
         else:
             raise ValidationError("You are not allowed to perform this action")
