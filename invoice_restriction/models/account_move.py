@@ -12,7 +12,7 @@ class AccountMove(models.Model):
     _description = "multiple sale order in invoice"
 
 
-    # x=related('partner_id.invoice_hold',string="hold")
+    related="partner_id.invoice_hold"
 
 
     def action_post(self):

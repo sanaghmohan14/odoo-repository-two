@@ -26,10 +26,11 @@ class SaleOrder(models.Model):
 
 
 
-    #
+
     def write(self, vals):
         """used to change the price of product template"""
         # if self.state =='sent':
+        print(vals,"values of j")
         for rec in self:
             changes = []
             changed_names = {
@@ -39,11 +40,14 @@ class SaleOrder(models.Model):
                 'partner_id': 'changed partner',
             }
 
+
+
             old_values = {}
             for field_name in changed_names:
 
                 if field_name in vals:
                     old_value = rec[field_name]
+                    print('test :',rec._fields[field_name].type)
                     if rec._fields[field_name].type == 'many2one':
                         if old_value:
 
@@ -86,29 +90,38 @@ class SaleOrder(models.Model):
 
             # if changes and not rec.revision_notes:
             #     raise ValidationError("no")
+
             if changes:
                 revision_notes = "\n".join(changes)
-            self.env['revision.tracking'].create({
-                'sale_id': rec.id,
-                'modified_on': fields.Date.today(),
-                'modified_by': self.env.user.id,
-                'revision_notes': revision_notes,
+                self.env['revision.tracking'].create({
+                    'sale_id': rec.id,
+                    'modified_on': fields.Date.today(),
+                    'modified_by': self.env.user.id,
+                    'revision_notes': revision_notes,
 
-            })
+                })
         return result
 
 
 
 
-    def action_confirm(self):
-        for rec in self:
-            if 'validity_date' in rec:
-                self.env['revision.tracking'].create({
-                    'sale_id': self.id,
-                    'modified_on': fields.Date.today(),
-                    'modified_by': self.env.user.id,
-                    'revision_notes': rec.revision_notes,
-                })
+
+
+
+
+
+
+
+
+    # def action_confirm(self):
+    #     for rec in self:
+    #         if 'validity_date' in rec:
+    #             self.env['revision.tracking'].create({
+    #                 'sale_id': self.id,
+    #                 'modified_on': fields.Date.today(),
+    #                 'modified_by': self.env.user.id,
+    #                 'revision_notes': rec.revision_notes,
+    #             })
 
 
 
