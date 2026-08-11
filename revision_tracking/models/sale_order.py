@@ -27,66 +27,150 @@ class SaleOrder(models.Model):
 
 
 
+    # def write(self, vals):
+    #     """used to change the price of product template"""
+    #     # if self.state =='sent':
+    #     print(vals,"values of j")
+    #     for rec in self:
+    #         changes = []
+    #         changed_names = {
+    #             'validity_date': 'changed expiry date',
+    #             'date_order': 'changed date order',
+    #             'payment_term_id': 'changed payment term',
+    #             'partner_id': 'changed partner',
+    #         }
+    #
+    #
+    #
+    #         old_values = {}
+    #         for field_name in changed_names:
+    #
+    #             if field_name in vals:
+    #                 old_value = rec[field_name]
+    #                 print('test :',rec._fields[field_name].type)
+    #                 if rec._fields[field_name].type == 'many2one':
+    #                     if old_value:
+    #
+    #                         old_values[field_name]=old_value.name
+    #                     else:
+    #                         old_values[field_name] = " "
+    #                 else:
+    #                     if old_values:
+    #
+    #                         old_values[field_name] = str(old_value)
+    #                     else:
+    #                         old_values[field_name] = ""
+    #
+    #         result = super(SaleOrder, rec).write(vals)
+    #
+    #         print("items",changed_names.items())
+    #
+    #         for field_name, field_label in changed_names.items():
+    #             if field_name in vals:
+    #                 new_value = rec[field_name]
+    #                 if rec._fields[field_name].type == 'many2one':
+    #                     if new_value:
+    #                         new_value = new_value.name
+    #                     else:
+    #                         new_value = ""
+    #                 else:
+    #                     if new_value:
+    #                         new_value = str(new_value)
+    #                     else:
+    #                         new_value = ""
+    #
+    #
+    #
+    #                 old_value = old_values.get(field_name, '')
+    #
+    #                 if old_value != new_value:
+    #                     changes.append(f"{field_label}:"f"{old_value} to {new_value}")
+    #
+    #         print(changes)
+    #
+    #         # if changes and not rec.revision_notes:
+    #         #     raise ValidationError("no")
+    #
+    #         if changes:
+    #             revision_notes = "\n".join(changes)
+    #             self.env['revision.tracking'].create({
+    #                 'sale_id': rec.id,
+    #                 'modified_on': fields.Date.today(),
+    #                 'modified_by': self.env.user.id,
+    #                 'revision_notes': revision_notes,
+    #
+    #             })
+    #     return result
+
+
+
+
+
+
     def write(self, vals):
         """used to change the price of product template"""
         # if self.state =='sent':
-        print(vals,"values of j")
+        print(vals, "values of j")
         for rec in self:
             changes = []
-            changed_names = {
-                'validity_date': 'changed expiry date',
-                'date_order': 'changed date order',
-                'payment_term_id': 'changed payment term',
-                'partner_id': 'changed partner',
-            }
-
-
-
             old_values = {}
-            for field_name in changed_names:
+            for field_name in vals:
 
-                if field_name in vals:
-                    old_value = rec[field_name]
-                    print('test :',rec._fields[field_name].type)
-                    if rec._fields[field_name].type == 'many2one':
-                        if old_value:
+                # if field_name in vals:
+                if field_name not in rec._fields:
+                    continue
+                old_value = rec[field_name]
+                field_type = rec._fields[field_name].type
 
-                            old_values[field_name]=old_value.name
-                        else:
-                            old_values[field_name] = " "
+                if field_type == 'many2one':
+                    if old_value:
+                        old_values[field_name] = old_value.name
                     else:
-                        if old_values:
+                        old_values[field_name] = " "
 
-                            old_values[field_name] = str(old_value)
-                        else:
-                            old_values[field_name] = ""
+                elif field_type in ['one2many','many2one']:
+                    old_values[field_name] = str(old_value.ids)
+
+                else:
+                    if old_value:
+                        old_values[field_name] = str(old_value)
+                    else:
+                        old_values[field_name] = " "
+
+
+
+
 
             result = super(SaleOrder, rec).write(vals)
 
-            print("items",changed_names.items())
+            for field_name in vals:
+                if field_name not in rec._fields:
+                    continue
 
-            for field_name, field_label in changed_names.items():
-                if field_name in vals:
-                    new_value = rec[field_name]
-                    if rec._fields[field_name].type == 'many2one':
-                        if new_value:
-                            new_value = new_value.name
-                        else:
-                            new_value = ""
+                new_value = rec[field_name]
+
+                field_type = rec._fields[field_name].type
+
+                if field_type == 'many2one':
+                    if new_value:
+                        new_value = new_value.name
                     else:
-                        if new_value:
-                            new_value = str(new_value)
-                        else:
-                            new_value = ""
+                        new_value = ""
+                elif field_type in ['one2many','many2one']:
+                    new_value = str(new_value.ids)
+                else:
+                    if new_value:
+                        new_value = str(new_value)
+                    else:
+                        new_value = ""
+                old_value = old_values.get(field_name, '')
 
+                if old_value !=new_value:
+                    field_label=rec._fields[field_name].name
 
-
-                    old_value = old_values.get(field_name, '')
-
-                    if old_value != new_value:
-                        changes.append(f"{field_label}:"f"{old_value} to {new_value}")
-
+                    changes.append(f"{field_label}:"f"{old_value} to {new_value}")
             print(changes)
+
 
             # if changes and not rec.revision_notes:
             #     raise ValidationError("no")
@@ -101,7 +185,6 @@ class SaleOrder(models.Model):
 
                 })
         return result
-
 
 
 

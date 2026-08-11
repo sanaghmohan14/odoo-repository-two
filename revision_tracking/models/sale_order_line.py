@@ -19,7 +19,9 @@ class SaleOrderLine(models.Model):
 
 
     def write(self,vals):
+        print(vals, "123vals")
         for rec in self:
+            print(vals,"123vals")
             print("testts")
             # if rec.order_id.state!='sent':
             #     continue
@@ -49,9 +51,10 @@ class SaleOrderLine(models.Model):
             if 'product_template_id' in vals and old_product!=new_product:
                 changes.append((f"product:{old_product} to {new_product}"))
             if 'product_uom_qty' in vals and old_quantity!=new_quantity:
-                changes.append((f"quantity:{old_quantity} to {new_quantity}"))
+                changes.append((f"quantity:{new_product} {old_quantity} to {new_quantity}"))
             if 'price_unit' in vals and old_price!=new_price:
-                changes.append((f"price:{old_price} to {new_price}"))
+                changes.append((f"price:{new_product} {old_price} to {new_price}"))
+
 
 
             print("Changes:",changes)
@@ -86,6 +89,8 @@ class SaleOrderLine(models.Model):
     #         "domain":[('sale_order_id','=',self.id)]
     #
     #     }
+
+
 
 
 
