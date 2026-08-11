@@ -1,3 +1,5 @@
+from openpyxl.worksheet import related
+
 from odoo.exceptions import ValidationError
 
 from odoo import models,fields,api
@@ -8,6 +10,9 @@ class AccountMove(models.Model):
     _inherit = "account.move"
 
     _description = "multiple sale order in invoice"
+
+
+    # x=related('partner_id.invoice_hold',string="hold")
 
 
     def action_post(self):

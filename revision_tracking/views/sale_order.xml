@@ -14,8 +14,8 @@
                                 type="object" icon="fa-wrench" name="action_product_history">
 <!--                                 <button name="%(product_price_change.create_price_change_wizard)d" type="action" string=""  ></button>-->
                             <div class="o_stat_info">
-<!--                                <field name="repairs_count"/>-->
-<!--                                 <field name="product_history" widget="statinfo" string="Product History"/>-->
+                                <field name="revision_count"/>
+                                 <field name="revision_history" widget="statinfo" string="Revision History"/>
 
                             </div>
                         </button>

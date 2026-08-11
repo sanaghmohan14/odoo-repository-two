@@ -15,7 +15,7 @@
             <form>
                 <sheet>
                     <group>
-                        <field name="revision_number"/>
+                        <field name="name"/>
                         <field name="modified_by"/>
                         <field name="modified_on"/>
                         <field name="revision_notes"/>
@@ -30,7 +30,7 @@
         <field name="model">revision.tracking</field>
         <field name="arch" type="xml">
             <list>
-                <field name="revision_number"/>
+                <field name="name"/>
                 <field name="modified_by"/>
                 <field name="modified_on"/>
                 <field name="revision_notes"/>
