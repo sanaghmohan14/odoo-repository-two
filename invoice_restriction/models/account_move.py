@@ -12,7 +12,8 @@ class AccountMove(models.Model):
     _description = "multiple sale order in invoice"
 
 
-    related="partner_id.invoice_hold"
+    customer_invoice_hold= fields.Boolean(related="partner_id.invoice_hold",string="Invoice Hold")
+
 
 
     def action_post(self):

@@ -107,6 +107,10 @@ class SaleOrder(models.Model):
 
 
 
+
+
+
+
     def write(self, vals):
         """used to change the price of product template"""
         # if self.state =='sent':
@@ -114,7 +118,14 @@ class SaleOrder(models.Model):
         for rec in self:
             changes = []
             old_values = {}
-            for field_name in vals:
+
+
+            new_vals=vals.copy()
+            print(new_vals,"4444444444444444")
+
+            new_vals.pop('order_line','None')
+
+            for field_name in new_vals:
 
                 # if field_name in vals:
                 if field_name not in rec._fields:
@@ -143,7 +154,7 @@ class SaleOrder(models.Model):
 
             result = super(SaleOrder, rec).write(vals)
 
-            for field_name in vals:
+            for field_name in new_vals:
                 if field_name not in rec._fields:
                     continue
 
@@ -166,7 +177,7 @@ class SaleOrder(models.Model):
                 old_value = old_values.get(field_name, '')
 
                 if old_value !=new_value:
-                    field_label=rec._fields[field_name].name
+                    field_label=rec._fields[field_name].string
 
                     changes.append(f"{field_label}:"f"{old_value} to {new_value}")
             print(changes)

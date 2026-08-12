@@ -73,7 +73,7 @@ class SaleOrderLine(models.Model):
                     'modified_by': self.env.user.id,
                     'revision_notes':notes,
                 })
-                return result
+        return result
 
 
 
