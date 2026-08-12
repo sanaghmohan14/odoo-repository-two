@@ -15,7 +15,7 @@ class MrpProduction(models.Model):
                 if length>2:
                     raise ValidationError("More than one move in this production")
             else:
-                return super().acttion
+                return super().action_confirm()
 
 
 

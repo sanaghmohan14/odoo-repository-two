@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+
+manufacturing_component_restriction.access_mrp_wizard_one_one,access_mrp_wizard_one_one,manufacturing_component_restriction.model_mrp_wizard,base.group_user,1,1,1,1
+
+

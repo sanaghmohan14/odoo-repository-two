@@ -10,12 +10,6 @@
 
 
             </xpath>
-<!--            <xpath expr="//sheet" position="before">-->
-<!--                  <div class="alert alert-warning" role="alert" invisible="" >-->
-<!--                      invoice is on hold-->
-<!--                  </div>-->
-
-<!--            </xpath>-->
         </field>
     </record>
 </odoo>

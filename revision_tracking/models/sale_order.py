@@ -1,3 +1,5 @@
+from os import WCONTINUED
+
 from odoo import models,fields
 
 from odoo.exceptions import ValidationError
@@ -104,26 +106,24 @@ class SaleOrder(models.Model):
 
 
 
-
-
-
-
-
-
-
     def write(self, vals):
         """used to change the price of product template"""
         # if self.state =='sent':
-        print(vals, "values of j")
+
+        # if self.state != 'draftt':
         for rec in self:
+
+
+            # if rec.state == 'sent':
+            #     continue
+
             changes = []
             old_values = {}
 
+            new_vals = vals.copy()
+            print(new_vals, "4444444444444444")
 
-            new_vals=vals.copy()
-            print(new_vals,"4444444444444444")
-
-            new_vals.pop('order_line','None')
+            new_vals.pop('order_line', 'None')
 
             for field_name in new_vals:
 
@@ -139,7 +139,7 @@ class SaleOrder(models.Model):
                     else:
                         old_values[field_name] = " "
 
-                elif field_type in ['one2many','many2one']:
+                elif field_type in ['one2many', 'many2one']:
                     old_values[field_name] = str(old_value.ids)
 
                 else:
@@ -147,10 +147,6 @@ class SaleOrder(models.Model):
                         old_values[field_name] = str(old_value)
                     else:
                         old_values[field_name] = " "
-
-
-
-
 
             result = super(SaleOrder, rec).write(vals)
 
@@ -167,7 +163,7 @@ class SaleOrder(models.Model):
                         new_value = new_value.name
                     else:
                         new_value = ""
-                elif field_type in ['one2many','many2one']:
+                elif field_type in ['one2many', 'many2one']:
                     new_value = str(new_value.ids)
                 else:
                     if new_value:
@@ -176,11 +172,11 @@ class SaleOrder(models.Model):
                         new_value = ""
                 old_value = old_values.get(field_name, '')
 
-                if old_value !=new_value:
-                    field_label=rec._fields[field_name].string
+                if old_value != new_value:
+                    field_label = rec._fields[field_name].string
 
                     changes.append(f"{field_label}:"f"{old_value} to {new_value}")
-            print(changes)
+                print(changes)
 
 
             # if changes and not rec.revision_notes:
@@ -195,7 +191,7 @@ class SaleOrder(models.Model):
                     'revision_notes': revision_notes,
 
                 })
-        return result
+            return result
 
 
 

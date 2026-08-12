@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <record id="mrp_wizard" model="ir.ui.view">
+        <field name="name">mrp</field>
+        <field name="model">mrp.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button type="object" string="Submit" name="action_confirm"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="first" domain="[('is_approved','=',True)]"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="create_mrp_wizard" model="ir.actions.act_window">
+        <field name="name">mrp Wizard</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">mrp.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="mrp_wizard"/>
+        <field name="target">new</field>
+    </record>
+
+
+</odoo>

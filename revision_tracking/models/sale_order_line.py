@@ -12,17 +12,12 @@ class SaleOrderLine(models.Model):
 
     revision_id = fields.One2many('revision.tracking','sale_order_id',string="Revision History")
 
+    def write(self, vals):
 
-
-
-
-
-
-    def write(self,vals):
-        print(vals, "123vals")
         for rec in self:
-            print(vals,"123vals")
-            print("testts")
+            # if rec.state == 'sent':
+            # print(vals, "123vals")
+            # print("testts")
             # if rec.order_id.state!='sent':
             #     continue
             # changes=[]
@@ -30,50 +25,46 @@ class SaleOrderLine(models.Model):
             #         'product_uom_qty':'quantity changed',
             #         'price_unit':'price changed'
             #         }
-            old_product=rec.product_template_id.name
+            old_product = rec.product_template_id.name
             print(old_product)
-            old_quantity=rec.product_uom_qty
-            old_price=rec.price_unit
+            old_quantity = rec.product_uom_qty
+            old_price = rec.price_unit
             print(old_price)
-            result=super(SaleOrderLine, rec).write(vals)
-            # if rec.order_id.state != 'sent':
-            #     continue
+            result = super(SaleOrderLine, rec).write(vals)
+
             changes = []
 
-            new_product=rec.product_template_id.name
-            new_quantity=rec.product_uom_qty
-            new_price=rec.price_unit
+            new_product = rec.product_template_id.name
+            new_quantity = rec.product_uom_qty
+            new_price = rec.price_unit
             print(new_price)
 
-            print('*'*100,vals)
+            print('*' * 100, vals)
 
-
-            if 'product_template_id' in vals and old_product!=new_product:
+            if 'product_template_id' in vals and old_product != new_product:
                 changes.append((f"product:{old_product} to {new_product}"))
-            if 'product_uom_qty' in vals and old_quantity!=new_quantity:
+            if 'product_uom_qty' in vals and old_quantity != new_quantity:
                 changes.append((f"quantity:{new_product} {old_quantity} to {new_quantity}"))
-            if 'price_unit' in vals and old_price!=new_price:
+            if 'price_unit' in vals and old_price != new_price:
                 changes.append((f"price:{new_product} {old_price} to {new_price}"))
 
-
-
-            print("Changes:",changes)
+            print("Changes:", changes)
 
             if changes:
                 # reason=rec.order_id.revision_notes
                 # print('reason :',reason)
                 # if  not reason:
-                    # raise ValidationError("no changes")
+                # raise ValidationError("no changes")
                 notes = "\n".join(changes)
-                print('notes :',notes)
+                print('notes :', notes)
                 self.env['revision.tracking'].create({
-                    'sale_id':rec.order_id.id,
-                    'sale_order_id':rec.id,
-                    'modified_on':fields.Datetime.now(),
+                    'sale_id': rec.order_id.id,
+                    'sale_order_id': rec.id,
+                    'modified_on': fields.Datetime.now(),
                     'modified_by': self.env.user.id,
-                    'revision_notes':notes,
+                    'revision_notes': notes,
                 })
-        return result
+            return result
 
 
 
