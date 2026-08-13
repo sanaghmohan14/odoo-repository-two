@@ -8,11 +8,14 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <button type="object" string="Submit" name="action_confirm"/>
+                    <button type="object" string="Submit" name="action_replace"/>
                 </header>
                 <sheet>
                     <group>
-                        <field name="first" domain="[('is_approved','=',True)]"/>
+
+                        <field name="product_id"/>
+                        <field name="required_qty"/>
+                        <field name="alternate_product_id"/>
                     </group>
                 </sheet>
             </form>

@@ -8,10 +8,9 @@ class ProductTemplate(models.Model):
     _inherit = "product.template"
 
 
-    def write(self, vals):
-        for rec in self:
-            if 'product_id 'in vals:
-                print("product present")
+    alternate_product_id = fields.Many2many('product.product',string="Alternate Product")
+
+
 
 
 
