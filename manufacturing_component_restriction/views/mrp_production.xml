@@ -6,7 +6,7 @@
         <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
         <field name="arch" type="xml">
             <xpath expr="//header" position="inside">
-                      <button string="Show Alternate" type="action" name="%(manufacturing_component_restriction.create_mrp_wizard)d"/>
+                      <button string="Show Alternate" type="object" name="action_request_alternate"/>
 <!--                      <button  type="action" string=" Create bulk"  ></button>-->
             </xpath>
 

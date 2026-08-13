@@ -5,6 +5,8 @@ class ProductProduct(models.Model):
     _inherit = "stock.move"
 
 
+
+
     def action_request_alternate(self):
 
         self.ensure_one()
@@ -24,3 +26,4 @@ class ProductProduct(models.Model):
                 "default_required_qty":self.product_uom_qty,
             }
         }
+

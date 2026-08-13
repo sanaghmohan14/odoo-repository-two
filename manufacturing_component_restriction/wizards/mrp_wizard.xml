@@ -12,10 +12,11 @@
                 </header>
                 <sheet>
                     <group>
-
-                        <field name="product_id"/>
-                        <field name="required_qty"/>
-                        <field name="alternate_product_id"/>
+                        <field name="move_id" invisible="1"/>
+                        <field name="new_id" invisible="1"/>
+                        <field name="product_id" readonly="1"/>
+                        <field name="required_qty" readonly="1"/>
+                        <field name="alternate_product_id" domain="[('is_approved','=',True)]"/>
                     </group>
                 </sheet>
             </form>
