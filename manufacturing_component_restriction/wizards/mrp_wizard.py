@@ -13,14 +13,6 @@ class MrpWizard(models.TransientModel):
 
 
 
-
-
-
-
-
-
-
-
     # def action_replace(self):
     #     for rec in self:
     #         if rec.unavailable_product_line_id:
@@ -55,6 +47,7 @@ class MrpWizard(models.TransientModel):
         self.ensure_one()
 
         line_to_process=self.unavailable_component_ids.filtered("suggested_alternate_id")
+        print(line_to_process,"line to process")
 
         if not line_to_process:
             raise ValidationError("Product not available")
@@ -63,13 +56,8 @@ class MrpWizard(models.TransientModel):
         create_commands=[]
 
         for move in line_to_process:
-            # unlink_commands.append(fields.Command.unlink(move.id))
-            # create_commands.append({
-            #     "product_id":move.suggested_alternate_id.id,
-            #     "product_uom_qty":move.product_uom_qty,
-            #     'product_uom':move.product_uom.id,
-            #     "name":move.suggested_alternate_id.name,
-            # })
+            print("move is here")
+
 
             self.order_id.write({
 

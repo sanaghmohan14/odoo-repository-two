@@ -44,11 +44,15 @@ class MrpProduction(models.Model):
         unavailable_moves=self.move_raw_ids.filtered(
         lambda move: move.product_id.qty_available < move.product_uom_qty)
 
+        print(unavailable_moves,"moves")
+
         if not unavailable_moves:
             raise ValidationError("all are in stock")
         if unavailable_moves == 0:
             raise ValidationError("all are in stock")
-        return {
+
+        if unavailable_moves:
+            return {
             "type": "ir.actions.act_window",
             "name": "alternate",
             'res_model': 'mrp.wizard',
@@ -58,7 +62,7 @@ class MrpProduction(models.Model):
                 "default_order_id":self.id,
                 "default_unavailable_component_ids":unavailable_moves.ids,
 
-            }
+                }
             }
 
 

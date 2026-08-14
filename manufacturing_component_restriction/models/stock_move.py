@@ -8,6 +8,6 @@ class ProductProduct(models.Model):
 
     suggested_alternate_id = fields.Many2one('product.product',string="Suggested Alternate Product")
 
-    # allowed_alternate_id = fields.Many2many('product.product',
-    #                                        related='product_id.alternate_component_ids',
-    #                                        string="Alternate Product")
+    allowed_alternate_id = fields.Many2many('product.product',
+                                           related='product_id.alternate_component_ids',
+                                           string="Alternate Product")
