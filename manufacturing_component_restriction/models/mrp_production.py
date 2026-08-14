@@ -33,8 +33,6 @@ class MrpProduction(models.Model):
     #                         }
     #                     }
     #
-    #
-    #
     #     return super().action_confirm()
 
 
@@ -48,6 +46,7 @@ class MrpProduction(models.Model):
 
         if not unavailable_moves:
             raise ValidationError("all are in stock")
+
         if unavailable_moves == 0:
             raise ValidationError("all are in stock")
 

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <template inherit_id="stock.report_delivery_document" id="report_delivery_document_one_two">
+
+        <!--<xpath expr="//div[@id='informations']" position="after">-->
+        <xpath expr="//table[@name='stock_move_line_table']" position="after">
+            <!--<xpath expr="//table[hasclass('table table-sm table-borderless')]" position="after">-->
+            <p>
+                <t t-if="o.internal_remarks">
+                    <strong></strong>
+                    <span t-esc="o.internal_remarks"/>
+                </t>
+            </p>
+        </xpath>
+    </template>
+
+</odoo>

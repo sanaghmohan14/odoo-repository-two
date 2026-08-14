@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record id="internal_notes_one" model="ir.ui.view">
+        <field name="name">sale</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='location_id']" position="after">
+                    <field name="internal_remarks"/>
+
+            </xpath>
+        </field>
+    </record>
+</odoo>

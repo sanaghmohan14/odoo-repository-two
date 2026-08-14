@@ -52,8 +52,8 @@ class MrpWizard(models.TransientModel):
         if not line_to_process:
             raise ValidationError("Product not available")
 
-        unlink_commands=[]
-        create_commands=[]
+        # unlink=[]
+        # create=[]
 
         for move in line_to_process:
             print("move is here")
