@@ -38,33 +38,33 @@ class MrpProduction(models.Model):
     #     return super().action_confirm()
 
 
-    def action_request_alternate(self):
+    def action_suggest_alternate(self):
         self.ensure_one()
-        x=[]
-        for rec in self:
-            print("rec is here")
-            if rec.move_raw_ids:
-                for i in rec.move_raw_ids:
-                    x.append(i.product_id.name)
-                    print(x)
-                    print("i",i)
-                    if i.product_id:
-                        print("yes")
-                        if i.product_id.qty_available < i.product_uom_qty:
-                            print(i.product_id.qty_available)
-                            return {
-                                "type": "ir.actions.act_window",
-                                "name": "alternate",
-                                'res_model': 'mrp.wizard',
-                                'view_mode': 'form',
-                                "target": "new",
-                                "context": {
-                                    "default_move_id": self.id,
-                                    "default_product_id": i.product_id.id,
-                                    "default_alternate_product_id":i.product_id.alternate_product_id.id,
-                                    # "default_required_qty": self.product_uom_qty,
-                                }
-                            }
+
+        unavailable_moves=self.move_raw_ids.filtered(
+        lambda move: move.product_id.qty_available < move.product_uom_qty)
+
+        if not unavailable_moves:
+            raise ValidationError("all are in stock")
+        if unavailable_moves == 0:
+            raise ValidationError("all are in stock")
+        return {
+            "type": "ir.actions.act_window",
+            "name": "alternate",
+            'res_model': 'mrp.wizard',
+            'view_mode': 'form',
+            "target": "new",
+            "context": {
+                "default_order_id":self.id,
+                "default_unavailable_component_ids":unavailable_moves.ids,
+
+            }
+            }
+
+
+
+
+
 
 
 

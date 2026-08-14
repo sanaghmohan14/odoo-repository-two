@@ -15,3 +15,7 @@ class ProductTemplate(models.Model):
 
 
 
+
+
+
+

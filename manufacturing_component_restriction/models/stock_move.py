@@ -6,24 +6,8 @@ class ProductProduct(models.Model):
 
 
 
+    suggested_alternate_id = fields.Many2one('product.product',string="Suggested Alternate Product")
 
-    def action_request_alternate(self):
-
-        self.ensure_one()
-
-        if self.product_id.qty_available>=self.product_uom_qty:
-            raise ValidationError("Product Product Already Available")
-
-        return {
-            "type": "ir.actions.act_window",
-            "name":"alternate",
-            'res_model': 'mrp.wizard',
-            'view_mode': 'form',
-            "target": "new",
-            "context": {
-                "default_move_id":self.id,
-                "default_product_id":self.product_id.id,
-                "default_required_qty":self.product_uom_qty,
-            }
-        }
-
+    # allowed_alternate_id = fields.Many2many('product.product',
+    #                                        related='product_id.alternate_component_ids',
+    #                                        string="Alternate Product")

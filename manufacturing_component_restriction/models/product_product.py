@@ -5,6 +5,19 @@ class ProductProduct(models.Model):
 
     is_approved = fields.Boolean(string="Approve")
 
-    alternate_product_id = fields.Many2many('product.template', string="Alternate Product")
+    alternate_component_ids = fields.Many2many('product.product',
+                                            string="Alternate Product",
+                                            relation="product_component_alternate_rel",
+                                           column1= "component_id",
+                                           column2= "alternate_component_id",
+                                            )
+
+
+
+
+
+
+
+
 
 
