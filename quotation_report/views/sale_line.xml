@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <template id="report_saleorder_document_weight_one" inherit_id="sale.report_saleorder_document">
+
+        <xpath expr="//th[@name='th_quantity']" posititon="after">
+            <th name="th_line_weight" class="text_end">
+                <span>Weight</span>
+            </th>
+        </xpath>
+
+        <xpath expr="//td[@name='td_product_quantity']" posititon="after">
+            <td name="td_line_weight" class="text_end">
+                <span t-field="line.line_weight"/>
+                <span t-if="line.product_id.weight_uom_name" t-field="line.product_id.weight_uom_name"/>
+            </td>
+        </xpath>
+
+        <xpath expr="//div[@name='so_total_summary']" posititon="after">
+                    <div class="col-4">
+<!--                        <table class="table table_sm">-->
+                            <tr class="fw_bold">
+
+                                <td>Total Weight: </td> <br></br>
+
+                                <td class="text_end">
+                                    <span t-field="doc.total_weight"/>
+                                </td>
+                            </tr>
+<!--                        </table>-->
+                    </div>
+        </xpath>
+    </template>
+</odoo>

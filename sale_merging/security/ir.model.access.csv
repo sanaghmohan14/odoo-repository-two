@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+
+sale_merging.access_sale_merging_one,access_sale_merging_one,sale_merging.model_merge_wizard,base.group_user,1,1,1,1
+
+

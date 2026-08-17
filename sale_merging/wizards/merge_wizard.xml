@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <record id="merge_wizard_one" model="ir.ui.view">
+        <field name="name">merge</field>
+        <field name="model">merge.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button type="object" string="Submit" name="wizard_merge"/>
+                </header>
+                <sheet>
+                        <field name="multiple_sale_order_ids"/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="create_merge_wizard" model="ir.actions.act_window">
+        <field name="name">merge Wizard</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">merge.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="merge_wizard_one"/>
+        <field name="target">new</field>
+    </record>
+
+
+</odoo>

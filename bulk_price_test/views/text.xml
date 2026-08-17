@@ -122,3 +122,6 @@
     </template>
 
 </odoo>
+
+
+<!--  <span t-if="doc.order_line and doc.order_line[0].product_id" t-field="doc.order_line[0].product_id.weight_uom_name"/>&ndash;&gt;-->

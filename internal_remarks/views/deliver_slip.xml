@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-
     <template inherit_id="stock.report_delivery_document" id="report_delivery_document_one_two">
 
         <!--<xpath expr="//div[@id='informations']" position="after">-->
