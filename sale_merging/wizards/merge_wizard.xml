@@ -14,7 +14,7 @@
                         <group>
                             <field name="target_order_id" readonly="1"/>
                             <field name="partner_id" readonly="1"/>
-                            <field name="order_ids"/>
+                            <field name="order_ids" domain=""/>
                         </group>
                 </sheet>
             </form>

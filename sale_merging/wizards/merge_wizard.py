@@ -13,7 +13,7 @@ class MergeWizard(models.TransientModel):
 
     partner_id = fields.Many2one('res.partner', string="Customer")
 
-    order_ids=fields.Many2many('sale.order')
+    order_ids=fields.Many2many('sale.order',domain=[('state', '==', 'draft')])
 
 
 
@@ -39,7 +39,6 @@ class MergeWizard(models.TransientModel):
         first_order=self.order_ids[0]
 
         print("first order",first_order)
-        # print(first_order.date_order)
 
         target.write(
             {
@@ -48,6 +47,7 @@ class MergeWizard(models.TransientModel):
                 'payment_term_id':first_order.payment_term_id.id,
             }
         )
+
 
         product_lines={
             line.product_id.id : line for line in target.order_line if line.product_id
@@ -59,8 +59,6 @@ class MergeWizard(models.TransientModel):
 
             for line in order.order_line:
 
-                # if [line.product_id,line.product_id.id] in product_lines:
-
                 if line.product_id and line.product_id.id in product_lines:
 
                     product_lines[line.product_id.id].product_uom_qty += line.product_uom_qty
@@ -69,7 +67,6 @@ class MergeWizard(models.TransientModel):
                         'order_id': target.id
                     })
 
-                    print("new line88888888888888888888888888888888888",new_line)
 
                     if new_line.product_id:
                         product_lines[new_line.product_id.id]=new_line

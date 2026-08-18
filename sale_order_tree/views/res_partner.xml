@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record id="view_customer_order_tree_one_two" model="ir.ui.view">
+        <field name="name">order.tree</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//notebook" position="inside">
+                <page string="My sale orders">
+                    <list editable="bottom">
+                        <field name="multiple_sale_order_ids" />
+                    </list>
+                </page>
+            </xpath>
+
+
+            <xpath expr="//div[hasclass('oe_button_box')]" position="inside">
+                <button class="oe_stat_button" type="object" icon="fa-wrench" name="action_sale_history_one">
+                    <div class="o_stat_info">
+                        <field name="sale_count"/>
+                        <field name="sale_history" widget="statinfo" string="sale History"/>
+
+                    </div>
+                </button>
+            </xpath>
+
+            <xpath expr="//div[hasclass('oe_button_box')]" position="inside">
+                <button class="oe_stat_button" type="object" icon="fa-wrench" name="action_product_history">
+                    <div class="o_stat_info">
+                                                <field name="product_count"/>
+                                                <field name="product_history" widget="statinfo" string="Product History"/>
+
+                    </div>
+                </button>
+            </xpath>
+
+
+
+        </field>
+    </record>
+</odoo>
