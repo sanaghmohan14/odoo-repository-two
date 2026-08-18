@@ -11,7 +11,11 @@
                     <button type="object" string="Submit" name="wizard_merge"/>
                 </header>
                 <sheet>
-                        <field name="multiple_sale_order_ids"/>
+                        <group>
+                            <field name="target_order_id" readonly="1"/>
+                            <field name="partner_id" readonly="1"/>
+                            <field name="order_ids"/>
+                        </group>
                 </sheet>
             </form>
         </field>

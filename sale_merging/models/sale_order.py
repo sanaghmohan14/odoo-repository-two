@@ -13,6 +13,9 @@ class SaleOrder(models.Model):
                                                domain=[('state', '==', 'draft')])
 
 
+
+
+
     def action_merge(self):
         for rec in self:
 
@@ -57,7 +60,8 @@ class SaleOrder(models.Model):
                 self.order_line = new
 
 
-    #
+
+
 
 
 
@@ -118,6 +122,7 @@ class SaleOrder(models.Model):
 
 
     def action_wizard(self):
+        self.ensure_one()
         return {
             "type": "ir.actions.act_window",
             "name": "alternate",
@@ -125,9 +130,8 @@ class SaleOrder(models.Model):
             'view_mode': 'form',
             "target": "new",
             "context": {
-                "default_order_id": self.id,
-
-
+                "default_target_order_id": self.id,
+                "default_partner_id":self.partner_id.id
             }
 
         }
