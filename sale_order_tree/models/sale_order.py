@@ -9,4 +9,7 @@ class SaleOrder(models.Model):
 
     multiple_sale_order_ids = fields.Many2many('sale.order', string="Multiple Sale Order",
 
-                                               domain=[('state', '==', 'draft')])
+
+                                            domain=[('state', '==', 'draft')])
+
+    # ('order_id.state', '!=', 'cancel')

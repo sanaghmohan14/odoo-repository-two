@@ -8,34 +8,36 @@
 
             <xpath expr="//notebook" position="inside">
                 <page string="My sale orders">
+
+                    <field name="sale_order_ids" >
                     <list editable="bottom">
-                        <field name="multiple_sale_order_ids" />
+                        <field name="name"/>
+                        <field name="date_order"/>
                     </list>
+                    </field>
                 </page>
             </xpath>
 
 
             <xpath expr="//div[hasclass('oe_button_box')]" position="inside">
-                <button class="oe_stat_button" type="object" icon="fa-wrench" name="action_sale_history_one">
+                <button class="oe_stat_button" type="object" icon="fa-wrench" name="action_view_sold_product">
                     <div class="o_stat_info">
-                        <field name="sale_count"/>
-                        <field name="sale_history" widget="statinfo" string="sale History"/>
+                        <field name="sale_product_count"/>
+                        <field name="sale_history" widget="statinfo" string="Product Count"/>
 
                     </div>
                 </button>
             </xpath>
 
-            <xpath expr="//div[hasclass('oe_button_box')]" position="inside">
-                <button class="oe_stat_button" type="object" icon="fa-wrench" name="action_product_history">
-                    <div class="o_stat_info">
-                                                <field name="product_count"/>
-                                                <field name="product_history" widget="statinfo" string="Product History"/>
+<!--            <xpath expr="//div[hasclass('oe_button_box')]" position="inside">-->
+<!--                <button class="oe_stat_button" type="object" icon="fa-wrench" name="action_product_history">-->
+<!--                    <div class="o_stat_info">-->
+<!--                                                <field name="product_count"/>-->
+<!--                                                <field name="product_history" widget="statinfo" string="Product History"/>-->
 
-                    </div>
-                </button>
-            </xpath>
-
-
+<!--                    </div>-->
+<!--                </button>-->
+<!--            </xpath>-->
 
         </field>
     </record>

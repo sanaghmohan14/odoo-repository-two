@@ -11,7 +11,7 @@
     'depends': ["mail", "contacts",'product','sale'],
     'data': [
 
-        "views/product_product.xml",
+            "views/product_product.xml",
                 "views/sale_order.xml",
         "views/res_partner.xml"
 
