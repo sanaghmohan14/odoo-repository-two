@@ -1,11 +1,108 @@
-<!--<?xml version="1.0" encoding="utf-8"?>-->
-<!--<odoo>-->
-
-<!--    <menuitem id="bulk_price_root_menu" name="Bulk Price"></menuitem>-->
-
-<!--        <menuitem id="Bulk_price_menu" name="Bulk Price"-->
-<!--              parent="bulk_price_root_menu"  action="action_bulk_price"/>-->
+<!--<?xml version="1.0" encoding="UTF-8" ?>-->
 
 
+<!--<templates xml:space="preserve">-->
 
-<!--</odoo>-->
+<!--    <t t-name="vechicle_repair_management.category_data">-->
+
+<!--        <section class="categories_section">-->
+
+<!--            <div class="container">-->
+
+<!--                <h3 class="section_heading text-center mb-4">-->
+<!--                    Top Vehicle Services-->
+<!--                </h3>-->
+
+<!--                <div id="demo" class="carousel slide" data-bs-ride="carousel">-->
+
+<!--                          <div class="carousel-indicators">-->
+<!--           <t t-foreach="result.services" t-as="service" t-key="service.id">-->
+
+<!--               <button type="button" data-bs-target="#demo" data-bs-slide-to="10" class="active"></button>-->
+
+<!--           </t>-->
+
+<!--      </div>-->
+
+<!--                <div class="row">-->
+
+<!--                    <t t-foreach="result.services" t-as="service" t-key="service.id">-->
+
+
+<!--                        <div class="col-lg-3 col-md-6 mb-4">-->
+
+<!--                            <a t-att-href="service.url" class="text-decoration-none text-dark">-->
+
+<!--                                <div class="card h-100 shadow">-->
+
+<!--                                    <div class="card-body">-->
+
+<!--                                        <h4 class="card-title">-->
+<!--                                            <t t-esc="service.name"/>-->
+<!--                                        </h4>-->
+
+<!--                                        <p>-->
+<!--                                            <strong>CUSTOMER :</strong>-->
+<!--                                            <t t-esc="service.partner_name"/>-->
+<!--                                        </p>-->
+
+<!--                                        <p>-->
+<!--                                            <strong>VEHICLE NO :</strong>-->
+<!--                                            <t t-esc="service.vechicle_no"/>-->
+<!--                                        </p>-->
+
+<!--                                        <p>-->
+<!--                                            <strong>VEHICLE MODEL :</strong>-->
+<!--                                            <t t-esc="service.vehicle_model"/>-->
+<!--                                        </p>-->
+
+<!--                                        <p>-->
+<!--                                            <strong>ADVISOR :</strong>-->
+<!--                                            <t t-esc="service.advisor_name"/>-->
+<!--                                        </p>-->
+
+<!--                                        <p>-->
+<!--                                            <strong>STATE :</strong>-->
+<!--                                            <t t-esc="service.state"/>-->
+<!--                                        </p>-->
+
+<!--                                        <p>-->
+<!--                                            <t t-if="service.vechicle_image"/>-->
+<!--                                           <img t-att-src="'data:image/png;base64,'+service.vechicle_image" style="height:100px;width:200px"/>-->
+<!--                                        </p>-->
+
+<!--                                    </div>-->
+
+
+<!--                                </div>-->
+
+
+<!--                            </a>-->
+
+
+<!--                        </div>-->
+
+<!--                    </t>-->
+
+<!--                </div>-->
+
+<!--            </div>-->
+<!--            </div>-->
+
+<!--        </section>-->
+
+<!--    </t>-->
+
+<!--      <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">-->
+<!--    <span class="carousel-control-prev-icon"></span>-->
+<!--  </button>-->
+<!--  <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">-->
+<!--    <span class="carousel-control-next-icon"></span>-->
+<!--  </button>-->
+
+
+
+
+<!--</templates>-->
+
+

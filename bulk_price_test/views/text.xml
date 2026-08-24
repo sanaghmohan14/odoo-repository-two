@@ -1,127 +1,62 @@
-<?xml version="1.0" encoding="utf-8"?>
-<odoo>
+<!--<t t-name="vechicle_repair_management.service_data">-->
 
-    <template id="report_vehicle_template">
+<!--    <section class="categories_section">-->
+<!--        <div class="container">-->
 
-        <t t-call="web.html_container">
+<!--            <h3 class="section_heading text-center mb-4">Top Vehicle Services</h3>-->
 
-            <t t-call="web.external_layout">
+<!--            <div id="vehicleServicesCarousel" class="carousel slide" data-bs-ride="false">-->
 
-                <div class="page">
+<!--                <div class="carousel-inner">-->
 
-                    <h2 align="center">
-                        Vehicle Repair Report
-                    </h2>
+<!--                    <t t-foreach="chunks" t-as="chunk" t-key="chunk_index">-->
 
-                    <p>
-                        <strong>Start Date :</strong>
-                        <span t-esc="docs.start_date"/>
-                    </p>
+<!--                        <div t-attf-class="carousel-item #{chunk_index == 0 ? 'active' : ''}">-->
 
-                    <p>
-                        <strong>End Date :</strong>
-                        <span t-esc="docs.end_date"/>
-                    </p>
+<!--                            <div class="row">-->
 
-                    <table class="table table-bordered">
+<!--                                <t t-foreach="chunk" t-as="service" t-key="service.id">-->
 
-                        <thead>
+<!--                                    <div class="col-lg-3 col-md-6 mb-4">-->
+<!--                                        <a t-att-href="service.url" class="text-decoration-none text-dark">-->
+<!--                                            <div class="card h-100 shadow">-->
+<!--                                                <div class="card-body">-->
+<!--                                                    <h4 class="card-title"><t t-esc="service.name"/></h4>-->
+<!--                                                    <p><strong>Customer:</strong> <t t-esc="service.partner_name"/></p>-->
+<!--                                                    <p><strong>Vehicle No:</strong> <t t-esc="service.vehicle_no"/></p>-->
+<!--                                                    <p><strong>Vehicle Model:</strong> <t t-esc="service.vehicle_model"/></p>-->
+<!--                                                    <p><strong>Advisor:</strong> <t t-esc="service.advisor_name"/></p>-->
+<!--                                                    <p><strong>State:</strong> <t t-esc="service.state"/></p>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </a>-->
+<!--                                    </div>-->
 
-                            <tr>
+<!--                                </t>-->
 
-                                <th>Vehicle No</th>
+<!--                            </div>-->
 
-                                <th>Customer</th>
+<!--                        </div>-->
 
-                                <th>Advisor</th>
+<!--                    </t>-->
 
-                                <th>Vehicle Model</th>
+<!--                </div>-->
 
-                                <th>Vehicle Type</th>
+<!--                &lt;!&ndash; Controls &ndash;&gt;-->
+<!--                <t t-if="chunks.length > 1">-->
+<!--                    <button class="carousel-control-prev" type="button"-->
+<!--                            data-bs-target="#vehicleServicesCarousel" data-bs-slide="prev">-->
+<!--                        <span class="carousel-control-prev-icon"></span>-->
+<!--                    </button>-->
+<!--                    <button class="carousel-control-next" type="button"-->
+<!--                            data-bs-target="#vehicleServicesCarousel" data-bs-slide="next">-->
+<!--                        <span class="carousel-control-next-icon"></span>-->
+<!--                    </button>-->
+<!--                </t>-->
 
-                                <th>Service Type</th>
+<!--            </div>-->
 
-                                <th>Start Date</th>
+<!--        </div>-->
+<!--    </section>-->
 
-                                <th>End Date</th>
-
-                                <th>Status</th>
-
-                                <th>Estimated</th>
-
-                                <th>Total</th>
-
-                            </tr>
-
-                        </thead>
-
-                        <tbody>
-
-                            <t t-foreach="records" t-as="rec">
-
-                                <tr>
-
-                                    <td>
-                                        <span t-esc="rec['vehicle_no']"/>
-                                    </td>
-
-                                    <td>
-                                        <span t-esc="rec['customer']"/>
-                                    </td>
-
-                                    <td>
-                                        <span t-esc="rec['advisor']"/>
-                                    </td>
-
-                                    <td>
-                                        <span t-esc="rec['vehicle_model']"/>
-                                    </td>
-
-                                    <td>
-                                        <span t-esc="rec['vehicle_type']"/>
-                                    </td>
-
-                                    <td>
-                                        <span t-esc="rec['service_type']"/>
-                                    </td>
-
-                                    <td>
-                                        <span t-esc="rec['start_date']"/>
-                                    </td>
-
-                                    <td>
-                                        <span t-esc="rec['end_date']"/>
-                                    </td>
-
-                                    <td>
-                                        <span t-esc="rec['state']"/>
-                                    </td>
-
-                                    <td>
-                                        <span t-esc="rec['estimated_amount']"/>
-                                    </td>
-
-                                    <td>
-                                        <span t-esc="rec['total_amount']"/>
-                                    </td>
-
-                                </tr>
-
-                            </t>
-
-                        </tbody>
-
-                    </table>
-
-                </div>
-
-            </t>
-
-        </t>
-
-    </template>
-
-</odoo>
-
-
-<!--  <span t-if="doc.order_line and doc.order_line[0].product_id" t-field="doc.order_line[0].product_id.weight_uom_name"/>&ndash;&gt;-->
+<!--</t>-->
