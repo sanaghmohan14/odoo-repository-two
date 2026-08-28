@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<templates xml:space="preserve">
+    <t t-name='point_of_sale.Navbar' t-inherit="point_of_sale.Navbar" t-inherit-mode="extension">
+        <xpath expr="//button[hasclass('register-label btn btn-lg btn-light lh-lg')]" position="after">
+             <button t-att-class="buttonClass"  t-on-click="this.onCancelOrder">
+                <i class="fa fa-link me-1" role="img" aria-label="Set Sale Order" title="Set Sale Order" />X
+            </button>
+            <div>
+            </div>
+        </xpath>
+    </t>
+</templates>
