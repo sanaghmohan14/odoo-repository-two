@@ -3,8 +3,8 @@
 <templates xml:space="preserve">
     <t t-name='pos_sale.Orderline' t-inherit="point_of_sale.Orderline" t-inherit-mode="extension">
         <xpath expr="//ul[hasclass('info-list')]" position="inside">
-             <button t-att-class="buttonClass"  t-on-click="this.onCancelOrder">
-                <i class="fa fa-link me-1" role="img" aria-label="Set Sale Order" title="Set Sale Order" />X
+             <button t-on-click="() => this.onButtonLine()" class="fa d-print-none fa-trash-o" style="width:40px;margin-left:350px;border:0px;margin-top:10px" >
+                <i  role="img" aria-label="Set Sale Order" title="Set Sale Order" />
             </button>
             <div>
             </div>
